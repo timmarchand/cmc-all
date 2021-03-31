@@ -1,0 +1,235 @@
+Filename	Dimension1	Dimension2	Dimension3	Dimension4	Dimension5	Dimension6	Closest Text Type
+FIC-AB9-002	1.69	6.35	0.83	1.66	-0.44	-0.91	Imaginative narrative
+FIC-AB9-003	-3.26	7.78	0.6	1.57	-0.64	-0.98	General narrative exposition
+FIC-AB9-004	0.830000000000001	7.91	1.17	1.91	-0.6	-1.43	Imaginative narrative
+FIC-AB9-005	6.81	4.99	-2	2.84	-1.1	-0.4	Imaginative narrative
+FIC-AB9-006	4.89	4.53	-1.75	1.33	-1.24	-0.84	Imaginative narrative
+FIC-AB9-007	2.33	3.2	0.6	3.66	-0.0899999999999999	-0.4	Involved persuasion
+FIC-AB9-008	3.27	6.65	-0.96	3.68	-0.66	-0.35	Imaginative narrative
+FIC-AC2-001	-10.24	3.97	3.85	1.28	0.39	-0.83	General narrative exposition
+FIC-AC2-002	2.05	0.82	0.82	3.1	-0.92	-0.53	Involved persuasion
+FIC-AC2-003	-4.99	9.04	0.74	4.59	-1.6	-0.84	General narrative exposition
+FIC-AC2-004	-10.36	3.79	3.44	2.7	0.32	-0.49	General narrative exposition
+FIC-AC2-005	-3.83	4.71	1.7	3.99	-1.79	2.07	General narrative exposition
+FIC-AC2-006	8.65	2.9	0.84	3.22	-1.49	-1.43	Involved persuasion
+FIC-AC2-007	2.25	3.89	4.75	2.96	-0.74	-0.34	Involved persuasion
+FIC-AC2-008	-7.32	4.72	3.71	2.98	2.66	-0.6	General narrative exposition
+FIC-AC2-009	-12.26	3.13	4	1.93	-0.74	-1.64	General narrative exposition
+FIC-AC2-010	-2.33	5.11	2.96	1.59	-1.49	-1.91	General narrative exposition
+FIC-BMW-001	-3.88	6.68	-0.12	0.18	-0.96	-1.69	General narrative exposition
+FIC-BMW-002	5.54	8.88	-1.75	1.07	-0.99	-1.14	Imaginative narrative
+FIC-BMW-003	3.22	6.17	-0.72	2.02	-0.21	-1.59	Imaginative narrative
+FIC-BMW-004	11.34	5.87	-1.72	4.78	-1.34	-1.74	Imaginative narrative
+FIC-BMW-005	-3.36	6.64	1.14	1.44	-1.79	-2.48	General narrative exposition
+FIC-BMW-006	5.64	5.68	-1.88	3.56	-1.7	-1.92	Imaginative narrative
+FIC-BMW-007	2.72	4.36	1.7	3.4	0.32	-2.5	Involved persuasion
+FIC-BMW-008	-0.51	9.29	-2.08	1.82	-0.92	-1.26	Imaginative narrative
+FIC-BMW-009	-1.97	4.69	1.8	0.85	-0.62	-1.67	General narrative exposition
+FIC-BPA-001	-16.2	3.06	-0.47	-5.38	-0.27	-2.67	General narrative exposition
+FIC-BPA-002	-7.06	4.02	-0.63	-1.7	0.89	-1.7	General narrative exposition
+FIC-BPA-003	-8.69	8.56	-0.2	-2.2	-0.33	-1.89	General narrative exposition
+FIC-BPA-004	-21.7	1.19	-3.18	-5.84	0.23	-2.93	Learned exposition
+FIC-BPA-005	-8.4	7.49	-3.56	-5.34	-2.17	-3.12	General narrative exposition
+FIC-BPA-006	-4.27	8.01	-4.59	-0.26	-1.5	-2.45	Imaginative narrative
+FIC-BPA-007	-8.33	9.79	-2.02	-0.37	-2.16	-3.12	General narrative exposition
+FIC-BPA-008	-9.05	5.61	0.8	-2.82	-0.92	-1.45	General narrative exposition
+FIC-BPA-009	-1.34	7.82	-2.48	-0.46	0.87	-1.41	Imaginative narrative
+FIC-BPA-010	-3.08	5.69	-3.67	-1.81	-3.02	-1.64	Imaginative narrative
+FIC-BPA-011	-5.22	6.58	-1.96	-1.28	-0.76	-1.43	General narrative exposition
+FIC-BPA-012	-8.33	6.89	-2.36	-1.57	1.37	-2.42	General narrative exposition
+FIC-BPA-013	-3.67	6.19	-0.74	0.5	-0.19	-1.12	General narrative exposition
+FIC-BPA-014	0.88	5.97	-4.08	0.23	-0.62	-1.73	Imaginative narrative
+FIC-BPA-015	-5.26	5.26	-1.4	-2.72	-1.58	-1.91	General narrative exposition
+FIC-BPA-016	-1.5	5.85	-1.08	2.76	-2.08	-0.62	Imaginative narrative
+FIC-BPA-017	-6.93	8.23	-1.23	-2.78	-1.15	-2.11	General narrative exposition
+FIC-BPA-018	-12.48	8.07	-1.79	-3.61	-1.38	-2.47	General narrative exposition
+FIC-BPA-019	-2.1	5.04	-3.84	-3.33	-1.51	-1.08	Imaginative narrative
+FIC-C8T-001	-1.38	5.95	1.4	1.55	-1	-0.5	Imaginative narrative
+FIC-C8T-002	-0.71	6.61	0.25	2.39	-1.46	0.11	Imaginative narrative
+FIC-CB5-001	4.6	7.3	-1.37	5.2	-0.64	-1.2	Imaginative narrative
+FIC-CB5-002	4.02	8.31	-0.83	3.12	-0.04	-1.29	Imaginative narrative
+FIC-CCW-001	1.2	3.61	1.39	0.49	0.09	-1.09	Imaginative narrative
+FIC-CCW-002	-1.3	2.5	0.3	0.9	-0.11	-0.95	Involved persuasion
+FIC-CCW-003	-3.82	3.52	0.19	-0.71	-0.11	-0.81	General narrative exposition
+FIC-CCW-004	3.8	3.8	-0.29	-0.24	-0.0100000000000001	0.04	Imaginative narrative
+FIC-CDB-001	-3.42	8.52	1.79	1.37	0.12	-0.76	General narrative exposition
+FIC-CDB-002	-4.05	8.28	2.84	1.82	1.24	-0.64	General narrative exposition
+FIC-CDB-003	-3.19	6.98	2.2	0.81	0.15	-0.19	General narrative exposition
+FIC-CDB-004	-0.93	7.8	0.63	-0.12	-0.81	-1.33	Imaginative narrative
+FIC-CDB-005	-1.67	7.08	1.93	1.86	0.9	0.07	Imaginative narrative
+FIC-CDB-006	-2.22	8.54	0.38	-0.51	-1.04	-0.66	Imaginative narrative
+FIC-CFY-001	8.31	7.51	-2.52	0.88	-1.53	-1.28	Imaginative narrative
+FIC-CFY-002	7.08	7.08	-2.28	-0.55	-1.3	-1.04	Imaginative narrative
+FIC-FAJ-001	-13.17	-0.69	4.01	-4.72	-1.2	-1.03	General narrative exposition
+FIC-FAJ-002	1.07	2.89	1.24	-0.74	-2.15	-1.05	Imaginative narrative
+FIC-FAJ-003	-9.42	0.33	3.47	-4.44	-0.08	-0.48	General narrative exposition
+FIC-FAJ-004	-4.21	0.22	3.97	0.17	-0.92	-1.5	General narrative exposition
+FIC-FAJ-005	-8.31	5.18	1.62	-0.44	-0.24	-0.14	General narrative exposition
+FIC-FAJ-006	-9.06	6.66	5.2	-2.09	-1.03	2.17	General narrative exposition
+FIC-FAJ-007	-9.21	-0.71	2.2	-2.79	-0.81	0.36	General narrative exposition
+FIC-FAJ-008	-3.82	2.21	4.41	1.14	0.18	0.46	General narrative exposition
+FIC-FAJ-009	-8.59	3.19	2.71	-0.52	-1.09	0.88	General narrative exposition
+FIC-FAJ-010	-9.92	1.86	3.58	-3.16	-1.59	-1.02	General narrative exposition
+FIC-FAJ-011	-2.61	0.49	1.7	-0.25	-0.75	-1.12	General narrative exposition
+FIC-FAJ-012	-5.3	1.49	1.84	0.13	2.77	-1.08	General narrative exposition
+FIC-FAJ-013	-7.03	3.34	1.61	1.96	-0.49	0.71	General narrative exposition
+FIC-FAJ-014	-8.43	0.0900000000000001	4.43	-0.17	-1.84	-0.69	General narrative exposition
+FIC-FAJ-015	-4.83	1.16	3.6	0.77	-0.76	2.43	General narrative exposition
+FIC-FAJ-016	-2.43	-0.18	2.34	-1.33	-0.79	-0.76	General narrative exposition
+FIC-FAJ-017	3.29	1.09	-0.3	1.34	-1.66	-1.17	Involved persuasion
+FIC-FAJ-018	-8.3	2.88	1.87	-0.82	-0.36	0.91	General narrative exposition
+FIC-FAJ-019	3.22	0.07	-2.31	0.55	-0.24	-1.47	Involved persuasion
+FIC-FAJ-020	-3.81	1.38	3.39	-1.13	0.18	-0.15	General narrative exposition
+FIC-FAJ-021	0.490000000000001	-0.26	2.25	2.53	-1.21	0.45	Involved persuasion
+FIC-FAJ-022	-6.46	-1.32	3.03	-2	-1.6	-1.26	General narrative exposition
+FIC-FAJ-023	-6.1	1.75	2.31	-1.35	-0.35	1.14	General narrative exposition
+FIC-FET-001	-11.02	5.18	3.28	-3.68	-1.17	-0.26	General narrative exposition
+FIC-FET-002	-1.99	6.83	1.12	-1.55	-1.73	-1.8	Imaginative narrative
+FIC-FET-003	-4.41	5.24	2.72	-1.3	-0.87	-0.41	General narrative exposition
+FIC-FET-004	-7.54	5.6	5.32	-2.67	0.34	-1.23	General narrative exposition
+FIC-FET-005	-11.47	5.12	5.19	-3.66	-0.12	-0.27	General narrative exposition
+FIC-FET-006	-12.02	2.9	3.96	-3.42	-1.26	-1.64	General narrative exposition
+FIC-FET-007	-12.3	4.52	4.3	-3.33	-1.02	-1.15	General narrative exposition
+FIC-FPB-001	0.31	3.61	-1.5	3.01	-0.79	-0.45	Imaginative narrative
+FIC-G0L-001	1.37	5.25	-0.77	-0.52	-1.21	-1.66	Imaginative narrative
+FIC-G01-002	-10.55	7.6	-0.26	-1.92	-1.33	-3.22	General narrative exposition
+FIC-G01-003	-0.75	6.41	-3.45	4.49	-2.4	2.38	Imaginative narrative
+FIC-G01-004	-4.38	6.1	-0.79	0.33	-0.61	-1.72	General narrative exposition
+FIC-G01-005	0.0699999999999996	10.82	0.16	1.74	-1.9	-0.71	Imaginative narrative
+FIC-G01-006	1.33	7.64	0.45	1.18	-1.93	-1.67	Imaginative narrative
+FIC-G01-007	0.62	5.09	-0.69	1.65	-1.78	-1.7	Imaginative narrative
+FIC-G01-008	-6.81	7.57	-0.77	-0.89	-0.88	-1.43	General narrative exposition
+FIC-G01-009	-14.47	5.15	0.24	-0.62	-1.66	-2.29	General narrative exposition
+FIC-G01-010	-12	8.22	-2.03	-5.45	-0.7	-2.2	General narrative exposition
+FIC-G01-011	-3.37	8.22	-0.72	3.74	1.49	-1.17	Imaginative narrative
+FIC-G01-012	-4.1	5.23	-1.24	-3.75	-0.6	0.62	General narrative exposition
+FIC-G01-013	0.77	11.88	-3.35	-2.97	-2.94	-2.57	Imaginative narrative
+FIC-G01-014	4.2	6.86	-2.17	0.79	-0.59	-2.57	Imaginative narrative
+FIC-G01-015	10.84	11.11	-2.8	1.35	-3.02	-2.28	Imaginative narrative
+FIC-G01-016	-14.14	9.52	-1.72	-2.53	0.0199999999999999	-1.98	General narrative exposition
+FIC-G01-017	6.36	6.54	-3.52	3.27	-1	-1.53	Imaginative narrative
+FIC-G01-018	-2.47	11.69	-3.55	3.07	-3.02	-1.73	Imaginative narrative
+FIC-G01-019	9.15	6.42	-1.2	6.23	-0.56	-2.69	Imaginative narrative
+FIC-G01-020	-14.44	10.03	-0.16	-2.16	-2.87	-2.26	General narrative exposition
+FIC-G01-021	5.38	8.84	0.0899999999999999	1.86	-1.36	-2.62	Imaginative narrative
+FIC-G01-022	-14.96	6.43	-1.67	-5.44	-2.25	-3.19	General narrative exposition
+FIC-G01-023	-14.59	7.91	-1.76	-5.32	0.52	-1.29	General narrative exposition
+FIC-G01-024	-12.47	7.15	-5.5	-2.84	-2.19	-2.54	General narrative exposition
+FIC-G01-025	-1.84	10.83	-3.7	0.36	2.02	-0.76	Imaginative narrative
+FIC-G01-026	-5.66	12.65	-3.78	5.45	-1.63	-1.69	Imaginative narrative
+FIC-G01-027	3.82	6.32	-1.67	-1.49	-0.0400000000000003	-0.1	Imaginative narrative
+FIC-G01-028	-6.97	8.55	-3.94	-1.71	-2.28	-2.68	General narrative exposition
+FIC-G01-029	-7.45	5.15	-2.5	-2.79	-2.68	-3.28	General narrative exposition
+FIC-G01-030	-5.79	8.87	-3.91	-1.64	-1.67	-2.93	General narrative exposition
+FIC-G01-031	-8.12	9.63	-3.91	-4.27	0.0599999999999998	-1.62	General narrative exposition
+FIC-G01-032	12.72	5.99	-1.82	0.0499999999999998	0.09	-1.06	Imaginative narrative
+FIC-G01-033	4.92	11.38	-5.48	3.52	-0.5	-1.95	Imaginative narrative
+FIC-G01-034	-14.37	5.08	-7.26	-3.18	-3.32	-0.21	General narrative exposition
+FIC-G01-035	11.2	-7.38	-4.52	-2.94	-3.92	3.86	Involved persuasion
+FIC-G01-036	-12.84	7.63	-2.7	2.18	0.72	-1.57	General narrative exposition
+FIC-G01-037	0.26	9.85	-3.2	0.1	-3.2	-1.93	Imaginative narrative
+FIC-G01-038	6.71	6.87	0.0200000000000001	-0.75	-1.6	-0.85	Imaginative narrative
+FIC-G01-039	4.56	5.7	-2.89	-0.2	-0.3	-1.33	Imaginative narrative
+FIC-G01-040	3.25	7.07	-3.13	1.69	1.23	-1.8	Imaginative narrative
+FIC-G01-041	-4.19	6.72	-1.74	1.17	2.07	-2.12	General narrative exposition
+FIC-GUU-001	1.92	5.27	-1.85	2.99	-1.03	-0.66	Imaginative narrative
+FIC-G0S-001	-8.15	3.96	1.15	0.15	-0.13	-1.38	General narrative exposition
+FIC-G0S-002	-2.1	3.95	0.25	-4.51	-1.77	-1.71	General narrative exposition
+FIC-G0S-003	-2.64	4.13	-0.02	-0.93	-1.37	-1.86	General narrative exposition
+FIC-G0Y-001	2.77	4.19	-1.13	0.32	-1.65	-1.35	Imaginative narrative
+FIC-G0Y-002	-3.26	5.09	-0.59	-3.31	-1.21	-0.14	General narrative exposition
+FIC-G0Y-003	-2.74	4.47	-3.18	-1.44	-1.24	-1	General narrative exposition
+FIC-G0Y-004	2.85	5.19	-0.19	0.33	-0.05	-1.19	Imaginative narrative
+FIC-G0Y-005	-2.16	4.65	-0.24	-2.37	-1.06	-1.05	General narrative exposition
+FIC-G0Y-006	2.17	5.55	-1.54	0.42	-1.45	-0.91	Imaginative narrative
+FIC-G0Y-007	4.33	6.81	-1.39	-1.63	-1.69	-1.07	Imaginative narrative
+FIC-G0Y-008	4.02	4.87	-1.41	-0.16	-1	-0.02	Imaginative narrative
+FIC-G01-001	-16.37	-5.04	-4.52	-9.27	-3.92	-3.5	Learned exposition
+FIC-GUU-002	-1.03	4.37	0.33	-0.18	-1.82	-1.85	Imaginative narrative
+FIC-GUU-003	-5.13	3.01	0.44	1.99	0.11	-1.81	General narrative exposition
+FIC-GUU-004	-9.19	7.06	0.44	-0.63	-1.21	-1.09	General narrative exposition
+FIC-GUU-005	6.59	5.2	-2.42	2.3	-1.27	-1.38	Imaginative narrative
+FIC-GUU-006	0.74	4.35	-0.37	1.25	-0.69	-1.6	Imaginative narrative
+FIC-GUU-007	5.46	3.83	-1.05	3.02	-0.71	-1.91	Imaginative narrative
+FIC-GUU-008	5.72	4.96	-1.39	0.88	-1.72	-0.76	Imaginative narrative
+FIC-GUU-009	0	3.18	-0.62	2.68	-1.88	-1.12	Imaginative narrative
+FIC-GUU-010	5.08	4.68	-0.51	1.75	-1.18	-1.24	Imaginative narrative
+FIC-GUU-011	2.46	5.68	-0.79	0.89	-1.85	-1.28	Imaginative narrative
+FIC-GUU-012	1.7	4.73	-1.37	0.84	-1.42	-1.69	Imaginative narrative
+FIC-GUU-013	6.13	5.21	-1.44	3.12	-1.27	-1.47	Imaginative narrative
+FIC-GVL-001	-5.83	3.62	0.0900000000000001	-2.82	-1.36	-2.09	General narrative exposition
+FIC-GVL-002	-4.63	5.83	-0.0099999999999999	-2.18	-1.61	-2.31	General narrative exposition
+FIC-GVL-003	-3.15	3.04	-0.89	-2.47	-1.83	-2.4	General narrative exposition
+FIC-H9C-001	-9.66	6.98	-0.83	-0.23	-1.34	-2.28	General narrative exposition
+FIC-H85-002	7.97	5.78	-1.32	2.84	-0.83	-1.59	Imaginative narrative
+FIC-H85-003	2.63	7.04	-0.94	-0.34	-1.87	-1.49	Imaginative narrative
+FIC-H85-004	9.39	7.3	0.42	2.59	-1.78	-1.31	Imaginative narrative
+FIC-H85-005	-0.96	-0.35	-0.31	-5.05	-0.45	-0.66	General narrative exposition
+FIC-H85-006	6.19	6.8	0.14	1.2	-1.64	0.11	Imaginative narrative
+FIC-H85-007	11.56	6.49	-0.26	-0.16	-1.1	-1.31	Imaginative narrative
+FIC-H85-008	6.5	5	2.57	0.36	-1.44	-1.81	Imaginative narrative
+FIC-H85-009	5.05	7.64	-0.61	0.35	-0.51	-1.69	Imaginative narrative
+FIC-H85-010	-2.88	11.03	0.62	0.12	-2.06	-0.86	Imaginative narrative
+FIC-H85-011	2.47	6.45	-0.11	1.52	-1.88	-1.74	Imaginative narrative
+FIC-HR9-001	4.4	4.85	-1.07	-0.29	-1.6	-0.98	Imaginative narrative
+FIC-H9C-002	-6.58	4.02	0.12	-1.67	-0.94	-1.23	General narrative exposition
+FIC-H9C-003	-7.03	4.25	0.14	1.12	-0.32	-2	General narrative exposition
+FIC-H9C-004	-10.06	5.71	1.05	-2.33	-0.53	-2.09	General narrative exposition
+FIC-H9C-005	-7.45	6.81	0.95	-0.71	-0.2	-2	General narrative exposition
+FIC-H9C-006	-13.06	4.74	1.8	-1.69	-0.14	-2.64	General narrative exposition
+FIC-H9C-007	-9.74	6.87	0.41	-0.53	-0.89	-2.03	General narrative exposition
+FIC-H9C-008	-10.47	5.12	2.52	-1.82	-0.55	-2.09	General narrative exposition
+FIC-H9C-009	-5.7	6.03	-1.11022302462516e-016	1.34	-0.26	-2.35	General narrative exposition
+FIC-H9D-001	4.46	8.71	-0.88	0.94	-0.73	-1.62	Imaginative narrative
+FIC-H9D-002	7.03	5.26	-0.12	-1.63	-1.28	-0.31	Imaginative narrative
+FIC-H9D-003	11.65	6.71	-0.84	0.4	-2.69	-1.24	Imaginative narrative
+FIC-H9D-004	13.81	4.75	1.03	2.97	-1.26	-1.33	Imaginative narrative
+FIC-H9D-005	-3.6	6.74	-2.45	-0.28	-2.23	-2	General narrative exposition
+FIC-H9D-006	7.21	7.07	-1.46	3.51	0	-1.28	Imaginative narrative
+FIC-H9D-007	11.07	3.55	0.0400000000000001	1.72	-1.71	-1.46	Imaginative narrative
+FIC-H9D-008	5.74	5.15	-1.23	0.83	-1.02	-2.12	Imaginative narrative
+FIC-H9D-009	10.37	8.3	-0.41	4.59	-1.56	-1.28	Imaginative narrative
+FIC-H9D-010	2.05	4.09	-0.65	0.84	-1.67	-0.81	Imaginative narrative
+FIC-H9D-011	3.71	4.08	0.91	1.52	-0.18	-1.4	Imaginative narrative
+FIC-H9D-012	7.02	6.23	0.45	4.1	-1.51	-1.43	Imaginative narrative
+FIC-H9D-013	24.33	4.41	-2.27	1.72	-2.53	-0.93	Informational interaction
+FIC-H9D-014	12.34	4.48	-0.21	3.37	-2.33	-1.71	Imaginative narrative
+FIC-H9D-015	-7.85	7.46	5.7	-0.93	-0.75	-0.36	General narrative exposition
+FIC-H85-001	9.57	4.94	-0.09	-0.34	-1.58	-1.79	Imaginative narrative
+FIC-J10-001	7.58	6.55	-2.73	1.18	-0.11	-0.9	Imaginative narrative
+FIC-J10-002	9.86	6.39	-2.53	1.4	-1.2	-1.43	Imaginative narrative
+FIC-J10-003	3.99	7.35	-1.49	0.0599999999999996	-0.17	-1.15	Imaginative narrative
+FIC-J10-004	11.02	9.81	-1.25	-1.11022302462516e-016	-0.32	-1	Imaginative narrative
+FIC-J10-005	17.73	4.24	-1.44	0.58	-0.12	-0.62	Imaginative narrative
+FIC-J10-006	14.46	3.72	-0.81	0.48	0.15	-0.17	Imaginative narrative
+FIC-J10-007	14.82	6.75	-2.12	0.93	-0.12	-0.67	Imaginative narrative
+FIC-J10-008	12.03	7.05	-1.72	2.4	-1.24	-1.14	Imaginative narrative
+FIC-J54-001	2.6	5.73	-0.65	0.9	-0.1	-2.05	Imaginative narrative
+FIC-J54-002	-1.74	7.29	1.65	-0.03	-2.82	-0.84	Imaginative narrative
+FIC-J54-003	-2.19	3.08	2.32	2.77	0.03	-2.22	Involved persuasion
+FIC-J54-004	1.65	7.89	0.48	3.64	-0.58	-1.38	Imaginative narrative
+FIC-J54-005	-6.01	4.56	2.49	-1.91	-0.6	-2.76	General narrative exposition
+FIC-J54-006	3.2	5.27	-0.23	2.86	-0.63	-2.16	Imaginative narrative
+FIC-J54-007	1.03	7.42	1.01	1.62	-0.22	-2.07	Imaginative narrative
+FIC-J54-008	14.88	7.33	-0.47	2.25	-3.56	-1.5	Imaginative narrative
+FIC-J54-009	1.98	8.21	0.69	0.43	-0.86	-2.05	Imaginative narrative
+FIC-J54-010	-1.88	6.08	2.59	0.28	-1.09	-1.71	General narrative exposition
+FIC-J54-011	-2.01	7.2	-3.03	-2.25	-1.61	-2.03	Imaginative narrative
+FIC-J54-012	-3.59	7.15	0.96	-0.27	-0.27	-1.92	General narrative exposition
+FIC-J54-013	11.42	10.27	-2.66	2.56	-1.7	-1.89	Imaginative narrative
+FIC-J54-014	-3.33066907387547e-016	3.74	-2.25	0.39	-1.01	-1.71	Imaginative narrative
+FIC-J54-015	3.73	5.73	0.54	0.68	-2.5	-2.57	Imaginative narrative
+FIC-J54-016	-2.71	5.56	0.73	-1.25	1.14	-2.27	General narrative exposition
+FIC-K8V-001	2.97	8.06	-0.6	2.05	-0.56	-1.24	Imaginative narrative
+FIC-K8V-002	3.98	6.62	-1.46	-0.31	-1.05	-1.79	Imaginative narrative
+FIC-K8V-003	11.18	7.59	-1.26	-0.29	-0.01	-1.61	Imaginative narrative
+FIC-K8V-004	12.63	6.35	-1.2	1.55	-1.98	-1.78	Imaginative narrative
+FIC-K8V-005	5.6	4.99	-0.03	-1.24	-0.98	-0.54	Imaginative narrative
+FIC-K8V-006	3.18	7.81	-1.16	-3.03	-1.29	-1.34	Imaginative narrative
+FIC-K8V-007	16.68	6.55	-2.61	-1.06	-1.26	-0.69	Imaginative narrative
+FIC-K8V-008	8.09	5.43	-0.51	0.62	-0.81	-1.55	Imaginative narrative
+FIC-K8V-009	8.92	4.75	-1.52	-0.38	-1.78	-1.05	Imaginative narrative
+FIC-K8V-010	9.44	6.75	-1.77	1.45	-1.73	-1.05	Imaginative narrative
+FIC-K8V-011	4.56	8.11	-1.45	0.69	-1.22	-0.88	Imaginative narrative
+FIC-AB9-001	0.64	4.78	-0.61	1.15	-0.77	-1.26	Imaginative narrative
+CORPUS	-0.62	5.62	-0.29	0.14	-0.96	-1.28	Imaginative narrative
