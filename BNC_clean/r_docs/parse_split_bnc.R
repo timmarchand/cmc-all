@@ -136,25 +136,39 @@ df <- readRDS(file = here("BNC_clean","data", "bnc_df.rds"))
 # define column names to be integers
 ints <- c("paragraph_id", "sentence_id", "start", "end", "term_id", "token_id", "head_token_id")
 
-ud_mdl <- df %>%
+ud_mdl <- df[1,] %>%
   mutate(model = map(text, ~udpipe(.x, object = mdl, parrallel.cores = 1L)))  %>%
   select(id,model) %>% unnest(model) %>%  
-  mutate(across(all_of(ints), as.integer))
-
+  mutate(across(all_of(ints), as.integer)) 
+ 
+  
+  ud_tag <- df %>% head(2) %>% 
+    mutate(tagged = map(text, ~udpipe(.x, object = mdl, parrallel.cores = 1L)))  %>%
+    mutate(tagged = map(tagged, ~paste(.x$token, .x$lemma, .x$xpos, sep = "_"))) %>% 
+    mutate(tagged = map(tagged, ~ paste(.x, collapse = " "))) %>% 
+    unnest(tagged) %>% 
+    group_by(file) %>% mutate(file=paste0(file,"_",row_number() %>% str_pad(3,"left","0"))) %>% 
+    select(file,tagged)
 # saving into zip files ---------------------------------------------------
 
 ##  create temp out folder if necessary
-# out <- tempdir("out")
+out <- tempdir("out")
 
 ## walk text files to temp out folder
 walk2(.x = df$text, .y =df$id, function(x,y) write_lines(x, paste0(out,"/",y,".txt") ))
 
 walk2(.x = df$tags, .y =df$id, function(x,y) write_lines(x, paste0(out,"/",y,"_tags.txt") ))
 
+walk2(.x = ud_tag$tagged, .y =ud_tag$id, function(x,y) write_lines(x, paste0(out,"/",y,"_ud-tags.txt") ))
+
+
+
+
 
 #  create out paths
 out_txts <- list.files(path = out, pattern = ".txt", full.names = TRUE)
 out_tags <- list.files(path = out, pattern = "_tags.txt", full.names = TRUE)
+ud_tags <-  list.files(path = out, pattern = "ud-tags.txt", full.names = TRUE)
 
 
 # not in function
@@ -165,7 +179,8 @@ out_txts <- out_txts[out_txts %notin% out_tags]
 
 ## create zip files
 zipr(zipfile = here("BNC_clean", "data","bnc_txt.zip"),files = out_txts)
-zipr(zipfile = here("BNC_clean", "data","bnc_tag.zip"),files = out_tags)
+zipr(zipfile = here("BNC_clean", "data","bnc_tag_c5.zip"),files = out_tags)
+zipr(zipfile = here("BNC_clean", "data","bnc_tag_ud.zip"), files = ud_tags)
 
 
 
