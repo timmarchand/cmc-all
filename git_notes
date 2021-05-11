@@ -22,3 +22,17 @@ Use:
 pull first
 OR
 git push origin master --force
+
+
+
+GIT
+
+if PUSH failed due to large file size... go back one commit... repeat as necessary
+
+git reset HEAD~
+
+OR reset to main branch
+
+git reset --hard origin/master
+
+
