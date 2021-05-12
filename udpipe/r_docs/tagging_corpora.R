@@ -360,7 +360,10 @@ trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>%
 
 # get the top 50 trigrams for each corpus
 trigram_wc100_totals %>% group_by(corpus) %>% dplyr::slice_max(total,n = 50) %>% pull(trigram) -> top_50
-top_50 %>% unique -> trigrams_efa
+top_50 %>% unique -> trigrams_efa_50
+
+trigram_totals %>%  group_by(corpus) %>% dplyr::slice_max(total,n = 20) %>% pull(trigram) -> top_20
+top_20 %>% unique -> trigrams_efa_20
 
 all_threads %>% count(corpus) -> all_count
 
@@ -378,7 +381,7 @@ wc500_count %>% summarise(sum = sum(n))
 full_pivot %>% select(file, corpus, one_of(trigrams_efa))
 
 ## check if any are dropped by filtering for low proportions
-trigram_totals %>% filter(trigram %in% trigrams_efa) %>% filter(total > 0) # tidylog result: none removed
+trigram_totals %>% filter(trigram %in% trigrams_efa_20) %>% filter(total > 0) # tidylog result: none removed
 
 ## check by proportion one per 1000
 trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>% 
@@ -401,5 +404,6 @@ files_less_500 <- all_threads %>% filter(wc <= 500) %>% pull(file)
 `%notin%` <- Negate(`%in%`)
 
 full_pivot %>% filter(file %notin% files_less_500 ) %>% 
-  select(file, corpus, one_of(trigrams_efa))
+  select(file, corpus, one_of(trigrams_efa)) %>% 
+  write_csv(file = here::here("efa","data","efa_table.csv"))
 
