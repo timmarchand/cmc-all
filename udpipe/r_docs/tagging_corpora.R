@@ -294,9 +294,14 @@ all_threads %>% filter(wc >500) %>%
 
 all_threads %>% filter(wc >500) %>% 
   count(corpus)
+
+
     
 threads_wc100 <- all_threads %>% filter(wc >100)
 threads_wc500 <- all_threads %>% filter(wc >500)
+
+## create a reference column of file and word counts
+wordcounts <- all_threads %>% select(file,wc)
 
 ngrams <- all_threads %>% select(file,tags_only) %>% 
      # remove commas, periods, colons and semi-colons as punctuation
@@ -306,89 +311,94 @@ ngrams <- all_threads %>% select(file,tags_only) %>%
      filter(!str_detect(trigram, "break")) %>% 
       mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
      # count the number per file
-     count(file, trigram) 
-
-ngrams_wc100 <- threads_wc100 %>% select(file,tags_only) %>% 
-  # remove commas, periods, colons and semi-colons as punctuation
-  mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
-  unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
-  # to avoid trigrams overlapping clause boundaries
-  filter(!str_detect(trigram, "break")) %>% 
-  mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
-  # count the number per file
-  count(file, trigram) 
+     count(file, trigram) %>% 
+  # join with wordcounts
+  inner_join(wordcounts) %>% 
+  # calculate the freequency per 1000 words
+  mutate(freq = n*1000/3703)
 
 
-ngrams_wc500 <- threads_wc500 %>% select(file,tags_only) %>% 
-  # remove commas, periods, colons and semi-colons as punctuation
-  mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
-  unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
-  # to avoid trigrams overlapping clause boundaries
-  filter(!str_detect(trigram, "break")) %>% 
-  mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
-  # count the number per file
-  count(file, trigram) 
+# ngrams_wc100 <- threads_wc100 %>% select(file,tags_only) %>% 
+#   # remove commas, periods, colons and semi-colons as punctuation
+#   mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
+#   unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
+#   # to avoid trigrams overlapping clause boundaries
+#   filter(!str_detect(trigram, "break")) %>% 
+#   mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
+#   # count the number per file
+#   count(file, trigram) 
+# 
+# 
+# ngrams_wc500 <- threads_wc500 %>% select(file,tags_only) %>% 
+#   # remove commas, periods, colons and semi-colons as punctuation
+#   mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
+#   unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
+#   # to avoid trigrams overlapping clause boundaries
+#   filter(!str_detect(trigram, "break")) %>% 
+#   mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
+#   # count the number per file
+#   count(file, trigram) 
      
 ## PIVOT WIDER
 full_pivot <- ngrams %>% 
-  pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
-  mutate(corpus = str_extract(.$file, "^..."), .after = file)
+  pivot_wider(names_from =trigram, values_from = freq, values_fill = 0) %>% 
+  mutate(corpus = str_extract(.$file, "^..."), .after = file) %>% 
+  inner_join(wordcounts)
 
-wc100_pivot <- ngrams_wc100 %>% 
-  pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
-  mutate(corpus = str_extract(.$file, "^..."), .after = file)
 
-wc500_pivot <- ngrams_wc500 %>% 
-  pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
-  mutate(corpus = str_extract(.$file, "^..."), .after = file)
+
+wordcounts %>% arrange(file) %>% pull(wc) -> wc
+full_pivot %>% mutate(wc = wc, .after = corpus)
+
+qwe <- full_pivot %>% head
+
+
+
+qwe %>% mutate(across(4:length(qwe), ~(cur_column*1000)/wc))
+
+all.equal(asd, qwe)
+
+glimpse(full_pivot)
+
+# wc100_pivot <- ngrams_wc100 %>% 
+#   pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
+#   mutate(corpus = str_extract(.$file, "^..."), .after = file)
+# 
+# wc500_pivot <- ngrams_wc500 %>% 
+#   pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
+#   mutate(corpus = str_extract(.$file, "^..."), .after = file)
 
 trigram_totals <- full_pivot %>% group_by(corpus) %>% 
-  summarise(across(where(is.integer), ~ sum((.x))))  %>% 
-  pivot_longer(cols = -corpus, names_to = "trigram", values_to = "total") 
-
-trigram_wc100_totals <- wc100_pivot %>% group_by(corpus) %>% 
-  summarise(across(where(is.integer), ~ sum((.x))))  %>% 
-  pivot_longer(cols = -corpus, names_to = "trigram", values_to = "total") 
-
-
-
-trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>% 
-  ungroup() %>% 
-  mutate(proportion = total/overall*1000) %>% 
-  filter(proportion>2) %>% 
-  tally()
+  summarise(across(where(is.integer), ~ mean((.x))))  %>% 
+  pivot_longer(cols = -corpus, names_to = "trigram", values_to = "mean_freq") 
 
 # get the top 50 trigrams for each corpus
-trigram_wc100_totals %>% group_by(corpus) %>% dplyr::slice_max(total,n = 50) %>% pull(trigram) -> top_50
+trigram_totals %>% group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 50) %>% pull(trigram) -> top_50
 top_50 %>% unique -> trigrams_efa_50
 
-trigram_totals %>%  group_by(corpus) %>% dplyr::slice_max(total,n = 20) %>% pull(trigram) -> top_20
-top_20 %>% unique -> trigrams_efa_20
+# get the top 20 trigrams for each corpus
+trigram_totals %>%  group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 20) %>% pull(trigram) -> top_50
+top_50 %>% unique -> trigrams_efa_20
 
 all_threads %>% count(corpus) -> all_count
 
-threads_wc100 %>% count(corpus)
-
+## setting word count limit >500
 all_threads %>% filter(wc >500) %>% count(corpus) -> wc500_count
+# tidylog tells us that 3231 rows omitted
+
 
 change <- tibble(corpus = all_count$corpus,
-                 removed = all_count$n - wc500_count$n)
-
-wc500_count %>% summarise(sum = sum(n))
+                 removed = all_count$n - wc500_count$n,
+                 remaining = wc500_count$n)
+## find from where the files are removed
+change
 
 
 ## selecting trigrams in full pivot table
 full_pivot %>% select(file, corpus, one_of(trigrams_efa))
 
 ## check if any are dropped by filtering for low proportions
-trigram_totals %>% filter(trigram %in% trigrams_efa_20) %>% filter(total > 0) # tidylog result: none removed
-
-## check by proportion one per 1000
-trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>% 
-  ungroup() %>% 
-  mutate(proportion = total/overall*1000) %>% 
-  filter(trigram %in% trigrams_efa) %>%
-  filter(proportion>1) # tidylog result: 163 removed (22%)
+trigram_totals %>% filter(trigram %in% trigrams_efa_50) %>% filter(mean_freq > 0) # tidylog result: none removed
 
 ## check by proportion one per 10000
 trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>% 
@@ -397,12 +407,16 @@ trigram_totals %>% group_by(corpus) %>% mutate(overall = sum(total)) %>%
   filter(trigram %in% trigrams_efa) %>%
   filter(proportion>1) # tidylog result: 8 removed (1%)
 
+
+# get the list of files less than 500 wordcount
 files_less_500 <- all_threads %>% filter(wc <= 500) %>% pull(file)
 
 
 ## Use %notin% function
 `%notin%` <- Negate(`%in%`)
 
+
+# save data selecting all files > 500 wc and top 50 POStrigrams
 full_pivot %>% filter(file %notin% files_less_500 ) %>% 
   select(file, corpus, one_of(trigrams_efa)) %>% 
   write_csv(file = here::here("efa","data","efa_table.csv"))
