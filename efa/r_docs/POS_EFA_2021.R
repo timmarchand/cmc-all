@@ -87,7 +87,76 @@ sum(nofactors$fa.values > .7) ##new kaiser criterion
 
 ##simple structure with a three factor model
 round1 <- fa(no_out, nfactors=3, rotate = "oblimin", fm = "ml")
-round1
+round1$loadings[]
+round1$structure[]
+
+fa.parallel(master_matrix)
+
+round1$BIC
+
+beta <- nest(no_out)
+beta<- tibble(factors = 1:5,
+              data = nest(no_out))
+
+ beta %>% 
+  mutate(model = map2(.x = .$factors, .y = .$data, 
+                             .f = ~fa(.y, nfactors = .x, 
+                            rotate = "oblimin", fm = "ml"))) %>% 
+  mutate(loadings = map(.x = model, .f = ~fa_table(.x, cut = 0.3))) %>% 
+  mutate(BIC = map_dbl(.x = model, .f = ~get_BIC(.x)))
+
+beta %>% mutate(tidy = map(model, broom::tidy))
+
+beta %>% mutate(BIC = map(.x = model,  .f = ~pull %>% pluck(1,"BIC"))) %>% unnest(c(BIC))
+
+?pluck%>% 
+  mutate(BIC = map_dbl(model, pull(BIC)))
+
+
+fa_loadings <- function(x, cut = 0) {
+  #get sorted loadings
+  loadings <- fa.sort(x)$loadings %>% round(3)
+  #supress loadings
+  loadings[loadings < cut] <- ""
+  #get additional info
+  add_info <- cbind(x$communalities, 
+                    x$uniquenesses,
+                    x$complexity) %>%
+    # make it a data frame
+    as.data.frame() %>%
+    # column names
+    rename("Communality" = V1,
+           "Uniqueness" = V2,
+           "Complexity" = V3) %>%
+    #get the item names from the vector
+    rownames_to_column("POSgram")
+  #build table
+  loadings %>%
+    unclass() %>%
+    as.data.frame() %>%
+    rownames_to_column("POSgram") %>%
+    left_join(add_info) %>%
+    mutate(across(where(is.numeric), round, 3))
+}
+
+round1 %>% pluck("score.cor") %>% as.data.frame() %>% rownames(., prefix ="ML")
+
+get_stats <- function(x){
+
+tbl <- tibble(AIC =  x %>% pluck("AIC"),
+              BIC = x %>% pluck("BIC"))
+
+return(tbl)
+
+}
+
+beta <- nest(master_matrix) %>% slice(rep(1:n(), each=6))
+beta$factors = 1:6
+
+beta %>% mutate(BIC = map_dbl(model,~get_BIC(.x)))
+beta %>% mutate(table = map(model, ~fa_loadings(round1, 0.3)))
+
+print(round1, cut = .3, digits = 2, sort = TRUE)
 
 round2 <- fa(noout[ , -c(4,15)], nfactors=3, rotate = "oblimin", fm = "ml")
 round2
