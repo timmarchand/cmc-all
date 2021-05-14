@@ -343,22 +343,20 @@ ngrams <- all_threads %>% select(file,tags_only) %>%
 full_pivot <- ngrams %>% 
   pivot_wider(names_from =trigram, values_from = freq, values_fill = 0) %>% 
   mutate(corpus = str_extract(.$file, "^..."), .after = file) %>% 
-  inner_join(wordcounts)
+  inner_join(wordcounts) %>% 
+  relocate(wc, .after = "corpus" )
 
 
 
+
+## alternative to avoid remaking full_pivot
 wordcounts %>% arrange(file) %>% pull(wc) -> wc
 full_pivot %>% mutate(wc = wc, .after = corpus)
 
-qwe <- full_pivot %>% head
 
+## convert to freq per 1000
+full_pivot_means <- full_pivot %>% mutate(across(4:length(full_pivot), ~.*1000/wc))
 
-
-qwe %>% mutate(across(4:length(qwe), ~(cur_column*1000)/wc))
-
-all.equal(asd, qwe)
-
-glimpse(full_pivot)
 
 # wc100_pivot <- ngrams_wc100 %>% 
 #   pivot_wider(names_from =trigram, values_from = n, values_fill = 0) %>% 
@@ -369,16 +367,106 @@ glimpse(full_pivot)
 #   mutate(corpus = str_extract(.$file, "^..."), .after = file)
 
 trigram_totals <- full_pivot %>% group_by(corpus) %>% 
+  select(-wc) %>% 
   summarise(across(where(is.integer), ~ mean((.x))))  %>% 
   pivot_longer(cols = -corpus, names_to = "trigram", values_to = "mean_freq") 
 
+trigram_totals_500 <- full_pivot %>% 
+  filter( wc >= 500) 
+  
+  get_pivot <- function(x){
+    x %>% group_by(corpus) %>% 
+      select(-wc) %>% 
+      summarise(across(where(is.integer), ~ mean((.x))))  %>% 
+      pivot_longer(cols = -corpus, names_to = "trigram", values_to = "mean_freq")
+  }
+  
+  get_pivot(full_pivot)
+  
+  group_by(corpus) %>% 
+  select(-wc) %>% 
+  summarise(across(where(is.integer), ~ mean((.x))))  %>% 
+  pivot_longer(cols = -corpus, names_to = "trigram", values_to = "mean_freq") 
+
+
+nested_pivot <- nest(full_pivot, data = everything()) %>% 
+                slice(rep(1, each=6)) %>% 
+                mutate(threshold = c(seq(0,1000,200))) %>% 
+                mutate(ngram_pivot = map2(.x = data, 
+                                             .y = threshold, 
+                                             .f = ~ .x %>% filter(wc >= .y) %>% 
+                                               get_pivot(.)))
+
+nested_pivot <- nested_pivot %>% mutate(ngram_pivot = map2(.x = data, 
+                                              .y = threshold, 
+                                              .f = ~ .x %>% filter(wc >= .y) %>% 
+                                                get_pivot(.))) %>% 
+                 mutate(top_10 = map(.x = ngram_pivot, .f = ~get_totals_10(.x))) %>%
+                 mutate(top_25 = map(.x = ngram_pivot, .f = ~get_totals_25(.x))) %>% 
+                 mutate(top_50 = map(.x = ngram_pivot, .f = ~get_totals_50(.x))) %>% 
+                mutate(top_10_trigrams = map(.x = top_10, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+                mutate(top_25_trigrams = map(.x = top_25, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+                mutate(top_50_trigrams = map(.x = top_50, .f = ~.x %>% pull(trigram) %>% unique))
+  
+nested_pivot <- test
+
+
+full
+
+## get_totals functions
+
+get_totals_10 <- function(x){
+                     x %>%  group_by(corpus) %>% 
+                      dplyr::slice_max(mean_freq,n = 10)
+                 }
+                 
+get_totals_50 <- function(x){
+                 x %>%  group_by(corpus) %>% 
+                  dplyr::slice_max(mean_freq,n = 50)
+}
+
+get_totals_25 <- function(x){
+ x %>%  group_by(corpus) %>% 
+    dplyr::slice_max(mean_freq,n = 25)
+}
+
+test  %>% pluck("top_10_trigrams") %>% set_names(., paste0("cut_",test$threshold)) -> top_10
+test  %>% pluck("top_25_trigrams") %>% set_names(., paste0("top_25_cut_",test$threshold))
+test  %>% pluck("top_50_trigrams") %>% set_names(., paste0("top_50_cut_",test$threshold))
+
+top_10 %>% lengths
+
+top_10[[1]] %in% top_10[[2]]
+top_10[[1]] %in% top_10[[3]]
+top_10[[1]] %in% top_10[[4]]
+top_10[[1]][top_10[[1]] %notin% top_10[[5]]]
+top_10[[1]][top_10[[5]] %notin% top_10[[1]]]
+
+
+
+nonlist_setdiff <- function(list_df1, list_df2) {
+  nonlist_vars <- list_df1 %>%
+    select_if(function(x) !is.list(x)) %>%
+    colnames(.)
+  dplyr::anti_join(list_df1, list_df2, by = nonlist_vars)
+}
+enframe(top_10) %>% mutate(same = map(.x = value, .f = setequal(.x,lag(.x, default = .x))))
+
+
+zxc <- trigram_totals %>% group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 50)# %>% pull(trigram) %>% unique
+
+zxc %>% nest(., data = everything()) %>%  mutate(top_10_trigrams = map(.x = data, .f = ~.x %>% pull(trigram) %>% unique))
+
 # get the top 50 trigrams for each corpus
-trigram_totals %>% group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 50) %>% pull(trigram) -> top_50
+trigram_totals %>% group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 50) %>% pull(trigram) -> top_50_mean
 top_50 %>% unique -> trigrams_efa_50
+
+trigram_totals_500 %>% group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 50) %>% pull(trigram) -> top_50_mean_500
+top_50_mean_500 %>% unique -> trigrams_500_efa_50
 
 # get the top 20 trigrams for each corpus
 trigram_totals %>%  group_by(corpus) %>% dplyr::slice_max(mean_freq,n = 20) %>% pull(trigram) -> top_50
-top_50 %>% unique -> trigrams_efa_20
+top_50_mean %>% unique -> trigrams_efa_50
 
 all_threads %>% count(corpus) -> all_count
 

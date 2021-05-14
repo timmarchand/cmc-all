@@ -1,13 +1,24 @@
 
-## set libraries
+## set libraries ------
 library(tidyverse)
 library(gsubfn)
 library(pysch)
 ## set date
 today <- Sys.Date()
 
+# Functions -----
+
+make_matrix <- function(x){
+  x %>% select(-c(2)) %>% column_to_rownames(var = "file")
+}
+
+
 ##import the file from POS project
 master <- read_csv(here::here("efa","data","efa_table.csv"))
+
+master_table <- readRDS(here::here("efa","data","efa_input_table.rds"))
+
+
 
 ##missing
 percentmissing <- function (x){ sum(is.na(x))/length(x) * 100}
