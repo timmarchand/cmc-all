@@ -14,6 +14,8 @@ suppressMessages({
   library(udpipe)
   library(readtext)
   library(tictoc)
+  library(tidytext)   
+  library(tidylog)
 })
 
 ## BNC ----
@@ -266,19 +268,20 @@ files <- list_paths %>% basename %>% path_ext_remove()
 
 # Getting ngrams ----------------------------------------------------------
 
-library(tidytext)   
-library(tidylog)
+
     
 ## hoc_threads and joc_threads can be found in udpipe/data
 ## bnc_threads is in ignored_files
     
-# bnc_threads <- read_rds(here("ignored_files","bnc_threads.rds"))
-# hoc_threads <- read_rds(here("udpipe","data","hoc_threads.rds"))
-# joc_threads <- read_rds(here("udpipe","data","joc_threads.rds"))
+ bnc_threads <-readRDS("~/Desktop/cmc-all/ignrored_files/bnc_threads.rds")
+ hoc_threads <- read_rds(here("udpipe","data","hoc_threads.rds"))
+ joc_threads <- read_rds(here("udpipe","data","joc_threads.rds"))
 
 all_threads <- bind_rows(joc_threads, hoc_threads, bnc_threads) %>% 
                 mutate(wc = str_count(.$tags_only, "\\b\\w+\\b"),
                        corpus = str_extract(.$file, "^..."), .after = file) 
+
+## get table of wordcounts
 all_threads %>% group_by(corpus) %>% 
   summarise(total_wc = sum(wc))
 
@@ -295,15 +298,39 @@ all_threads %>% filter(wc >500) %>%
 all_threads %>% filter(wc >500) %>% 
   count(corpus)
 
-
-    
-threads_wc100 <- all_threads %>% filter(wc >100)
-threads_wc500 <- all_threads %>% filter(wc >500)
-
 ## create a reference column of file and word counts
 wordcounts <- all_threads %>% select(file,wc)
+## creating trigrams, bigrams and unigrams  ----
 
-ngrams <- all_threads %>% select(file,tags_only) %>% 
+
+
+unigrams <- all_threads %>% 
+  unnest_tokens(output = unigram,input = tags_only, token = "words") %>%
+  ungroup() %>% 
+  # count the number per file
+  count(file, unigram) %>% 
+  # join with wordcounts
+  inner_join(wordcounts) %>% 
+  mutate(type = "unigram", .after = file) %>% 
+  rename(posgram  = unigram)
+
+
+bigrams <- all_threads %>% select(file,tags_only) %>% 
+  # remove commas, periods, colons and semi-colons as punctuation
+  mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
+  unnest_tokens(output = bigram,input = tags_only, token = "ngrams",n = 2) %>% ungroup() %>% 
+  # to avoid trigrams overlapping clause boundaries
+  filter(!str_detect(bigram, "break")) %>% 
+  mutate(bigram = str_replace_all(.$bigram,' ','_')) %>% 
+  # count the number per file
+  count(file, bigram) %>% 
+  # join with wordcounts
+  inner_join(wordcounts) %>% 
+  mutate(type = "bigram", .after = file) %>% 
+  rename(posgram  = bigram)
+
+
+trigrams <- all_threads %>% select(file,tags_only) %>% 
      # remove commas, periods, colons and semi-colons as punctuation
      mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
   unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
@@ -314,8 +341,13 @@ ngrams <- all_threads %>% select(file,tags_only) %>%
      count(file, trigram) %>% 
   # join with wordcounts
   inner_join(wordcounts) %>% 
-  # calculate the freequency per 1000 words
-  mutate(freq = n*1000/3703)
+mutate(type = "trigram", .after = file) %>% 
+            rename(posgram  = trigram)
+
+ngrams <-  bind_rows(trigrams,bigrams,unigrams) %>% 
+            mutate(type = factor(type, levels = c("unigram","bigram","trigram")),
+                  freq = n*1000/wc, .after = n) %>% 
+  nest(data = c(file, posgram, n,freq, wc))
 
 
 # ngrams_wc100 <- threads_wc100 %>% select(file,tags_only) %>% 
@@ -341,12 +373,17 @@ ngrams <- all_threads %>% select(file,tags_only) %>%
      
 ## PIVOT WIDER
 full_pivot <- ngrams %>% 
-  pivot_wider(names_from =trigram, values_from = freq, values_fill = 0) %>% 
+  
+  pivot_function <- 
+  pivot_wider(names_from =posgram, values_from = freq, values_fill = 0) %>% 
   mutate(corpus = str_extract(.$file, "^..."), .after = file) %>% 
   inner_join(wordcounts) %>% 
   relocate(wc, .after = "corpus" )
 
 
+
+
+ngrams %>% nest(-c(type))
 
 
 ## alternative to avoid remaking full_pivot
