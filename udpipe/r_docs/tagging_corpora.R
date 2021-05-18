@@ -344,38 +344,20 @@ trigrams <- all_threads %>% select(file,tags_only) %>%
 mutate(type = "trigram", .after = file) %>% 
             rename(posgram  = trigram)
 
-ngrams <-  bind_rows(trigrams,bigrams,unigrams) %>% 
+ <-  bind_rows(trigrams,bigrams,unigrams) %>% 
             mutate(type = factor(type, levels = c("unigram","bigram","trigram")),
                   freq = n*1000/wc, .after = n) %>% 
   nest(data = c(file, posgram, n,freq, wc))
 
 
-# ngrams_wc100 <- threads_wc100 %>% select(file,tags_only) %>% 
-#   # remove commas, periods, colons and semi-colons as punctuation
-#   mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
-#   unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
-#   # to avoid trigrams overlapping clause boundaries
-#   filter(!str_detect(trigram, "break")) %>% 
-#   mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
-#   # count the number per file
-#   count(file, trigram) 
-# 
-# 
-# ngrams_wc500 <- threads_wc500 %>% select(file,tags_only) %>% 
-#   # remove commas, periods, colons and semi-colons as punctuation
-#   mutate(tags_only = map_chr(tags_only, ~str_replace_all(.x, "[,\\.:;]", "BREAK"))) %>% 
-#   unnest_tokens(output = trigram,input = tags_only, token = "ngrams",n = 3) %>% ungroup() %>% 
-#   # to avoid trigrams overlapping clause boundaries
-#   filter(!str_detect(trigram, "break")) %>% 
-#   mutate(trigram = str_replace_all(.$trigram,' ','_')) %>% 
-#   # count the number per file
-#   count(file, trigram) 
      
 ## PIVOT WIDER
 full_pivot <- ngrams %>% 
   
   pivot_function <- 
-  pivot_wider(names_from =posgram, values_from = freq, values_fill = 0) %>% 
+  
+  
+  pivot_wider(names_from = posgram, values_from = freq, values_fill = 0) %>% 
   mutate(corpus = str_extract(.$file, "^..."), .after = file) %>% 
   inner_join(wordcounts) %>% 
   relocate(wc, .after = "corpus" )
@@ -414,7 +396,7 @@ trigram_totals_500 <- full_pivot %>%
   get_pivot <- function(x){
     x %>% group_by(corpus) %>% 
       select(-wc) %>% 
-      summarise(across(where(is.integer), ~ mean((.x))))  %>% 
+      summarise(across(where(is.double), ~ mean((.x))))  %>% 
       pivot_longer(cols = -corpus, names_to = "trigram", values_to = "mean_freq")
   }
   
@@ -541,8 +523,88 @@ files_less_500 <- all_threads %>% filter(wc <= 500) %>% pull(file)
 `%notin%` <- Negate(`%in%`)
 
 
+pivot_function <- function(x){
+  x %>% 
+    pivot_wider(id_cols = file,
+                names_from = posgram, values_from = freq, values_fill = 0) %>% 
+    mutate(corpus = str_extract(.$file, "^..."), .after = file) %>% 
+    inner_join(wordcounts) %>% 
+    relocate(wc, .after = "corpus" )
+}
+
+ngrams <-  ngrams %>% mutate(freq_table = map(data, ~pivot_function(.x)))
+
+
+ngrams %>% filter(type == unigram) %>% 
+  mutate(results = map(freq_table, ~nested))
+
+ngrams %>% uncount(6) %>%  
+  mutate(threshold = rep(seq(0,1000,200),3)) %>% 
+  mutate(ngram_pivot = map2(.x = data, 
+                            .y = threshold, 
+                            .f = ~ .x %>% filter(wc >= .y) %>% 
+                              get_pivot(.)))
+
+nested_pivot <- nested_pivot %>% mutate(ngram_pivot = map2(.x = data, 
+                                                           .y = threshold, 
+                                                           .f = ~ .x %>% filter(wc >= .y) %>% 
+                                                             get_pivot(.))) %>% 
+  mutate(top_10 = map(.x = ngram_pivot, .f = ~get_totals_10(.x))) %>%
+  mutate(top_25 = map(.x = ngram_pivot, .f = ~get_totals_25(.x))) %>% 
+  mutate(top_50 = map(.x = ngram_pivot, .f = ~get_totals_50(.x))) %>% 
+  mutate(top_10_trigrams = map(.x = top_10, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+  mutate(top_25_trigrams = map(.x = top_25, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+  mutate(top_50_trigrams = map(.x = top_50, .f = ~.x %>% pull(trigram) %>% unique))
+
+
+
+efa_input <- ngrams %>% 
+  uncount(6) %>%  
+  mutate(threshold = rep(seq(0,1000,200),3)) %>% 
+  mutate(ngram_pivot = map2(.x = freq_table, 
+                            .y = threshold, 
+                            .f = ~ .x %>% filter(wc >= .y) %>% 
+                              get_pivot(.)))   %>% #pluck("ngram_pivot",6) 
+  mutate(top_10 = map(.x = ngram_pivot, .f = ~get_totals_10(.x))) %>%
+  mutate(top_25 = map(.x = ngram_pivot, .f = ~get_totals_25(.x))) %>% 
+  mutate(top_50 = map(.x = ngram_pivot, .f = ~get_totals_50(.x))) %>% 
+  mutate(top_10_posgrams = map(.x = top_10, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+  mutate(top_25_posgrams = map(.x = top_25, .f = ~.x %>% pull(trigram) %>% unique)) %>% 
+  mutate(top_50_posgrams = map(.x = top_50, .f = ~.x %>% pull(trigram) %>% unique)) %>% glimpse
+
+
+
+
+## saving efa_frames
+efa_50 <- efa_input %>% 
+  mutate(freq_table = map2(.x = freq_table, 
+                           .y = threshold, 
+                           .f = ~ .x %>% filter(wc >= .y)), 
+         .before = type) %>% 
+  transmute(type,
+            output_50 = map2(.x = freq_table,
+                             .y = top_50_trigrams,
+                             .f = ~.x %>% select(file,corpus,one_of(.y))),
+            .before = type) 
+
+efa_25 <- efa_input %>% 
+  mutate(freq_table = map2(.x = freq_table, 
+                           .y = threshold, 
+                           .f = ~ .x %>% filter(wc >= .y)), 
+         .before = type) %>% 
+  transmute(type,
+            output_25 = map2(.x = freq_table,
+                             .y = top_25_trigrams,
+                             .f = ~.x %>% select(file,corpus,one_of(.y))),
+            .before = type) 
+
+
+saveRDS(efa_50, file = here::here("efa","data","efa_50.rds"))
+saveRDS(efa_25, file = here::here("efa","data","efa_25.rds"))
+
+
 # save data selecting all files > 500 wc and top 50 POStrigrams
-full_pivot %>% filter(file %notin% files_less_500 ) %>% 
-  select(file, corpus, one_of(trigrams_efa)) %>% 
-  write_csv(file = here::here("efa","data","efa_table.csv"))
+# full_pivot %>% filter(file %notin% files_less_500 ) %>% 
+#   select(file, corpus, one_of(trigrams_efa)) %>% 
+#   write_csv(file = here::here("efa","data","efa_table.csv"))
 
