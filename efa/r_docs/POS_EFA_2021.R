@@ -85,7 +85,17 @@ master_table <- readRDS(here::here("efa","data","efa_input_table.rds")) %>%
   mutate(data_efa_50 = map(.x= data_efa_50, .f = ~make_matrix(.x))) 
 
 ## import data from efa folder rds
-master_nest <- readRDS("efa/data/efa_50.rds")
+master_nest <- readRDS("efa/data/efa_all.rds")
+
+## change dfs to matrices, get correlation matrix, determinants and no of factors recommended details from each
+
+
+master_details <- master_nest %>% #slice(13) %>% 
+  mutate(matrix = map(data, ~make_matrix(.x)))  %>%
+  mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>% 
+  mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>% 
+  mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
+  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
 
 
 
