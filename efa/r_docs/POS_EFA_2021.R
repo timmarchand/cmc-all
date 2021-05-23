@@ -15,7 +15,7 @@ today <- Sys.Date()
 # Functions -----
 
 make_matrix <- function(x){
-  x %>% select(-c(2)) %>% column_to_rownames(var = "file")
+  x %>% select(-c(2))  %>% column_to_rownames(var = "file") %>% select(where(~ any(. != 0)))
 }
 
 get_loadings <- function(x, cut = NULL) {
@@ -84,6 +84,9 @@ master_table <- readRDS(here::here("efa","data","efa_input_table.rds")) %>%
   mutate(data_efa_25 = map(.x= data_efa_25, .f = ~make_matrix(.x))) %>% 
   mutate(data_efa_50 = map(.x= data_efa_50, .f = ~make_matrix(.x))) 
 
+## import data from efa folder rds
+master_nest <- readRDS("efa/data/efa_50.rds")
+
 
 
 # ##missing %>% 
@@ -107,6 +110,10 @@ master_table <- readRDS(here::here("efa","data","efa_input_table.rds")) %>%
 
 ## find the determinant of the correlation matrix
 ## det > 0.00001 advised to avoid multicolinearity effects
+
+master_nest %>% mutate(determinants = )
+
+
 
  determinants <- master_table %>% 
   transmute(threshold,
