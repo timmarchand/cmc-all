@@ -85,10 +85,40 @@ master_table <- readRDS(here::here("efa","data","efa_input_table.rds")) %>%
   mutate(data_efa_50 = map(.x= data_efa_50, .f = ~make_matrix(.x))) 
 
 ## import data from efa folder rds
-master_nest <- readRDS("efa/data/efa_all.rds")
+master_nest <- readRDS("efa/data/efa_all.rds") %>% 
+  mutate(threshold = parse_number(type) , .after = type)
 
 ## change dfs to matrices, get correlation matrix, determinants and no of factors recommended details from each
 
+efa_12_600 <- master_nest %>% 
+  filter(top == 12, threshold =600) %>% 
+  mutate(matrix = map(data, ~make_matrix(.x)))  %>%
+  mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>% 
+  mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>% 
+  mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
+  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
+
+get_cor_details <- function(pos = "gram", count = 50, cut = 600{
+  master_nest %>% 
+    filter(str_detect(type, pos)) %>% 
+    filter(top == count, threshold == cut) %>% 
+    mutate(matrix = map(data, ~make_matrix(.x)))  %>%
+    mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>%
+    mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>%
+    mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>%
+    mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble)) %>% 
+    mutate(n_factors = set_names(n_factors, paste0(type,"_",top)))
+}
+     get_cor_details(pos = "tri", count = 12, cut = c(600,1000)) 
+     
+     master_nest %>% 
+       filter(top == 50, threshold == 600) %>% 
+       filter(str_detect(type, "uni")) %>% 
+       mutate(matrix = map(data, ~make_matrix(.x)))  %>%
+       mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>% 
+       mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>% 
+       mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
+       mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
 
 master_details <- master_nest %>% #slice(13) %>% 
   mutate(matrix = map(data, ~make_matrix(.x)))  %>%
