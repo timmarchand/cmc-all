@@ -120,14 +120,21 @@ get_cor_details <- function(pos = "gram", count = 50, cut = 600{
        mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
        mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
 
-master_details <- master_nest %>% #slice(13) %>% 
+master_details <- master_nest %>% filter(top <100) %>% #slice(13) %>% 
   mutate(matrix = map(data, ~make_matrix(.x)))  %>%
   mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>% 
   mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>% 
   mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
-  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
+  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble)) %>% 
+  mutate(n_factors = set_names(n_factors, paste0(type,"_",top)))
 
 
+## save the master_details file
+
+master_details %>% saveRDS(here::here("efa","data","master_details.rds"))
+
+master_details %>% arrange(-determinant) %>% 
+  pluck("n_factors",1)
 
 # ##missing %>% 
 # percentmissing <- function (x){ sum(is.na(x))/length(x) * 100}
