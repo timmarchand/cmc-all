@@ -120,21 +120,29 @@ get_cor_details <- function(pos = "gram", count = 50, cut = 600{
        mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
        mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble))
 
-master_details <- master_nest %>% filter(top <100) %>% #slice(13) %>% 
+master_details <- master_nest %>% mutate(posgram = str_extract(type,"[a-z]+"), .after = type) %>% 
   mutate(matrix = map(data, ~make_matrix(.x)))  %>%
+  mutate(matrix = set_names(matrix, paste0(type,"_",top))) %>% 
   mutate(cor_mat = map(.x = matrix, .f = ~.x %>% cor)) %>% 
   mutate(determinant = map_dbl(.x = matrix, .f = ~.x %>% cor %>% det)) %>% 
   mutate(symnum = map(.x = cor_mat, .f = ~ .x %>% symnum)) %>% 
-  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x) %>% tibble)) %>% 
-  mutate(n_factors = set_names(n_factors, paste0(type,"_",top)))
+  mutate(n_factors = map(.x = matrix, .f = ~parameters::n_factors(.x, rotation = "oblimin", algorithm = "pa" , , package = "nFactors" ))) %>% 
+    mutate(n_factors_df = map(.x = n_factors, .f = ~tibble(.x)))
+
 
 
 ## save the master_details file
 
-master_details %>% saveRDS(here::here("efa","data","master_details.rds"))
+master_details %>% mutate(posgram = str_extract(type,"[a-z]+"), .after = type) %>%  mutate(posgram = factor(posgram, levels = c("unigram","bigram","trigram"))) %>% 
+  saveRDS(here::here("efa","data","master_details.rds"))
 
-master_details %>% arrange(-determinant) %>% 
-  pluck("n_factors",1)
+master_details <- readRDS(here::here("efa","data","master_details.rds"))
+
+library(see)
+master_details %>% filter(top  > 12) %>% 
+  arrange(-determinant) %>% 
+  pluck("matrix",1) %>% n_factors() %>% 
+  plot(.) +theme_modern()
 
 # ##missing %>% 
 # percentmissing <- function (x){ sum(is.na(x))/length(x) * 100}
@@ -158,7 +166,19 @@ master_details %>% arrange(-determinant) %>%
 ## find the determinant of the correlation matrix
 ## det > 0.00001 advised to avoid multicolinearity effects
 
-master_nest %>% mutate(determinants = )
+master_details %>% filter(top == 50) %>% 
+  arrange(-determinant) %>% 
+  pluck("n_factors",1)
+  
+master_details %>% filter(top == 50) %>% 
+  arrange(-determinant) %>% 
+  slice(1) %>% 
+  mutate(n-factors = map2(.x = matrix, .y = cor_mat, .f = ~parameters::n_factors(data = .x, cor = .y, rotation = "oblimin", algorithm = "pa"  ) ) %>% 
+  pluck("n-factors")
+  
+  master_details %>% filter(top == 50, type == "trigram_0") %>% 
+
+master_nest %>% mutate(determinant = )
 
 
 
