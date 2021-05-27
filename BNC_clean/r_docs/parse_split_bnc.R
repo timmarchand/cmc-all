@@ -117,13 +117,15 @@ dat <- tibble(file = files, path = list_paths) %>%
 df <- dat %>% select(file, text, tags) %>%
   unnest(c(text,tags)) %>%
   unnest(c(text,tags)) %>%
+  group_by(file)   %>% 
   mutate(id = paste0(file,"_",row_number() %>% str_pad(3,"left","0"))) %>%
-  relocate(id,1)
+  relocate(id,1) %>% 
+  ungroup()
 
 ## save as rdata
 
 saveRDS(dat, file = here("BNC_clean","data", "bnc_dat.rds"))
-saveRDS(df, file = here("BNC_clean","data", "bnc_df.rds"))
+saveRDS(bnc_df, file = here::here("BNC_clean","data", "bnc_df.rds"))
 
 
 ## apply udpipe model ---------
