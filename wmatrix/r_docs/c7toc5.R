@@ -1,9 +1,9 @@
 library(rvest)
-library(tidyverse)
 library(rio)
 library(magrittr)
 library(tidylog)
 library(tidytext)
+library(tidyverse)
 
 
 
@@ -235,28 +235,86 @@ saveRDS(C7_df, here::here("wmatrix","data","C7_df.rds"))
 
 # generate ngrmas ---------------------------------------------------------
 C5_df <- readRDS(here::here("wmatrix","data","C5_df.rds"))
+C5_df %>% filter(corpus == "JOC" | corpus == "HOC")
+
+
 C7_df <- readRDS(here::here("wmatrix","data","C7_df.rds"))
 
 
-## check for differences
-
-C5_df %>% count(id) %>% rename(C5 = n) -> C5_n
-C7_df %>% count(id) %>% rename(C7 = n) -> C7_n
-
-inner_join(C5_n,C7_n) %>% mutate(diff = C7 - C5)
 
 
-C7_df %<>% 
+
+C7_ngrams <- C7_df %>% 
+  # filter out posgrams overlapping punctuation
+  filter(!str_detect(lemma, "PUNC")) %>% 
+  # add unipos for checking
+  mutate(unipos = C7) %>% 
+  # create bigram tags, matching with the next pos down
   mutate(bipos = paste(C7,lead(C7,1),sep ="_")) %>% 
   # create trigram tags, matching the next 2 pos down
   mutate(tripos = paste(C7,lead(C7,1), lead(C7,2), sep ="_")) %>% 
+ # to lower for unigrams
+  mutate(unigram = tolower(word)) %>%
   # create bigram tags, matching the next pos down
   mutate(bigram = paste(word,lead(word,1),sep ="_") %>% tolower) %>% 
   # create trigram tags, matching the next 2 pos down
-  mutate(trigram = paste(word,lead(word,1), lead(word,2), sep ="_") %>% tolower) %>% 
-  # filter out posgrams overlapping punctuation
-  filter(!str_detect(lemma, "[,\\.:;\\?!]"))
+  mutate(trigram = paste(word,lead(word,1), lead(word,2), sep ="_") %>% tolower) %>%
+  ## add count based on the number of tags analysed
+  add_count(id, name = "tagcount") %>% 
+  add_count(id,unipos, name = "uni_count") %>% 
+  add_count(id, bipos, name = "bi_count") %>% 
+  add_count(id, tripos, name = "tri_count")
+  
 
+C7_ngrams %>% filter(tagcount == uni_count)
+
+ 
+
+
+
+C7_counts <- C7_ngrams %>% distinct(corpus,id,tagcount)
+
+## nest the df to add bipos and tripos counts quickly
+C7_nest <- 
+C7_df %>% nest(data = id:tagcount) %>% 
+  mutate(data = map(data, ~.x %>% 
+              add_count(id, bipos, name = "bipos_count"))) %>%
+  mutate(data = map(data, ~.x %>% 
+                  add_count(id, tripos, name = "tripos_count")))
+
+C7_freq <- 
+C7_ngrams %>% distinct(corpus, id, bipos, bi_count, tagcount ) %>%
+  #add freq column
+  mutate(bipos_freq = bi_count*1000 / tagcount)
+
+## set the top bipos for each corpus
+C7_freq %>% 
+  group_by(corpus,bipos) %>% 
+  summarise(total = sum(bi_count)) %>% 
+  dplyr::slice_max(total,n = 50) %>% 
+  ungroup %>% 
+  distinct(bipos)
+
+## function to pass through C7_ngrams
+get_totals <- function(x,total,pos,count){
+  x %>%
+   distinct(corpus, id, {{pos}}, {{count}}, tagcount ) %>%
+    #add freq column
+    mutate(pos_freq = {{count}}*1000 / tagcount) %>% 
+    group_by(corpus, {{pos}}) %>% 
+    summarise(sum = sum({{count}})) %>% 
+    slice_max(sum, n = total) %>% 
+    ungroup %>% 
+    distinct({{pos}})
+}
+
+top_50_trigrams <- get_totals(C7_ngrams, 50, tripos,tri_count)
+top_50_bigrams <- get_totals(C7_ngrams, 50, biipos,bi_count)
+top_12_trigrams <- get_totals(C7_ngrams, 12, tripos,tri_count)
+
+  # pivot wider
+  pivot_wider(id_cols = c(corpus,id), names_from = bipos, 
+              values_from = bipos_freq, values_fill = 0)
 
 
 C5_df %<>% 
