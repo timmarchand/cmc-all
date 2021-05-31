@@ -202,9 +202,11 @@ C5_df <- bind_rows(bnc_df,cmc_df) %>%
   # add corpus identifier to the front of each id
   mutate(id = paste0(corpus,"_",id))
 
+
+
+
 saveRDS(C5_df, here::here("wmatrix","data","C5_df.rds"))
  
-
 
 
 C7_df <- readRDS(here::here("wmatrix","data","wmatrix_dat.rds")) %>% 
@@ -228,6 +230,25 @@ mutate(id = case_when(
   corpus == "JOC" ~ paste0(corpus,"_",id),
   corpus == "NWS" ~ str_replace(id, "NEWS","NWS"),
   TRUE ~ id))
+
+## group cmc corpora into threads
+JOC_blend <- 
+  C7_df %>% filter(corpus == "JOC") %>%
+  separate(id, c("id","comment"),"(?<=[A-Z])(?=[0-9])") %>% 
+  select(-comment)
+
+HOC_blend <-
+  C7_df %>% filter(corpus == "HOC") %>% 
+  separate(id, c("id","comment"),"(?<=[A-Z])(?=[0-9])") %>% 
+  select(-comment)
+
+rm(HOC_blend)
+rm(JOC_blend)
+
+# bind with C7_df
+C7_df %<>% filter(corpus != "HOC", corpus != "JOC") %>% 
+  bind_rows(JOC_blend) %>% 
+  bind_rows(HOC_blend)
   
 
 ## save the base version to data folder (38MB)
