@@ -4,11 +4,14 @@ library(tidyverse)
 library(gsubfn)
 library(pysch)
 library(GGally)
-library(psych)
 library(GPArotation)
 library(parameters)
 library(corrplot)
 library(caret)
+
+## use pacman
+pacman::p_load(tidyverse,gsubfn,pysch,GGally,GPArotation,parameters,corrplot,caret)
+
 ## set date
 today <- Sys.Date()
 
