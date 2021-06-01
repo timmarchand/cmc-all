@@ -542,7 +542,7 @@ slice_max(mean_freq, n=n) %>%
 
 get_top_n <- function(data,n,cut = 0, type){
   df <- data %>% 
-    filter(type == sym({{type}})) %>% 
+    filter(type == sym({{type}})) %>%
     filter(tagcount > cut) %>% 
     group_by(corpus,type,pos) %>% 
     summarise(mean_freq = mean(pos_freq)) %>% 
@@ -603,8 +603,11 @@ C7_full_df <- bind_rows(C7_tri,C7_bi,C7_uni)
 
 saveRDS(C7_full_df, here::here("wmatrix","data","C7_full_df.rds"))
 
+## separate settings into useful columns
+C7_tops %<>% separate(setting,into = c("top","posgram","cut"),sep = "_",remove = FALSE) %>% mutate(cut = as.integer(cut))
+
 # match the pos strings for each setting to subset the C7_ngrams df
-C7_tops %<>% mutate(for_pivot = map(.x= strings, .f = ~C7_full_df%>% filter(pos %in% .x)))
+C7_tops %<>% mutate(for_pivot = map2(.x= strings, .y = cut, .f = ~C7_full_df%>% filter(pos %in% .x) %>% filter(tagcount %in% .y)))
 
 
 # use the for_pivot subset to pivot wider and create dataframes suitable for efa
