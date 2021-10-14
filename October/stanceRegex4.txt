@@ -1,0 +1,375 @@
+Biber	category	subcategory	pattern	regex
+1	modal	possibiity/permission/ability	can	[^_ ]+_VM_can\s?
+1	modal	possibiity/permission/ability	could	[^_ ]+_VM_could\s?
+1	modal	possibiity/permission/ability	might	[^_ ]+_VM_might\s?
+1	modal	necessity / obligation	must	[^_ ]+_VM_must\s?
+1	modal	necessity / obligation	should	[^_ ]+_VM_should\s?
+1	modal	necessity / obligation	ought to	[^_ ]+_VMK_ought\sto_TO_to\s?
+1	modal	necessity / obligation	had better	[^_ ]+_VHD_have\sbetter_RRR_better\s?
+1	modal	necessity / obligation	have to	[^_ ]+_VH._have\sto_TO_to\s?
+1	modal	necessity / obligation	got to	[^_ ]+_VVD_get\sto_TO_to\s?
+1	modal	prediction / volition	will	[^_ ]+_VM_will\s?
+1	modal	prediction / volition	would	[^_ ]+_VM_would\s?
+1	modal	prediction / volition	shall	[^_ ]+_VM_shall\s?
+1	modal	prediction / volition	could	[^_ ]+_VM_could\s?
+1	modal	prediction / volition	be going to	[^_ ]+_VVGK_going\s[^_ ]+_TO_to\s?
+2	stance adverb	certainty	actually	[^_ ]+_RR_actually\s?
+2	stance adverb	certainty	always	[^_ ]+_RR_always\s?
+2	stance adverb	certainty	certainly	[^_ ]+_RR_certainly\s?
+2	stance adverb	certainty	definitely	[^_ ]+_RR_definitely\s?
+2	stance adverb	certainty	indeed	[^_ ]+_RR_indeed\s?
+2	stance adverb	certainty	inevitably	[^_ ]+_RR_inevitably\s?
+2	stance adverb	certainty	in fact	[^_ ]+_II_in\sfact_NN1_fact\s?
+2	stance adverb	certainty	never	[^_ ]+_RR_never\s?
+2	stance adverb	certainty	of course	[^_ ]+_RR21_of\scourse_RR22_course\s?
+2	stance adverb	certainty	obviously	[^_ ]+_RR_obviously\s?
+2	stance adverb	certainty	really	[^_ ]+_RR_really\s?
+2	stance adverb	certainty	undoubtedly	[^_ ]+_RR_undoubtedly\s?
+2	stance adverb	certainty	without doubt	[^_ ]+_IW_without\s[^_ ]+_NN1_doubt\s?
+2	stance adverb	certainty	no doubt	[^_ ]+_RR21_no\sdoubt_RR22_doubt\s|[^_ ]+_AT_no\sdoubt_NN1_doubt\s?
+2	stance adverb	likelihood	apparently	[^_ ]+_RR_apparently\s?
+2	stance adverb	likelihood	evidently	[^_ ]+_RR_evidently\s?
+2	stance adverb	likelihood	kind of	[^_ ]+_NN1_kind\sof_IO_of\s?
+2	stance adverb	likelihood	in most cases	[^_ ]+_II_in\smost_DAT_most\s[^_ ]+_NN2_case\s?
+2	stance adverb	likelihood	in most instances	[^_ ]+_II_in\smost_DAT_most\s[^_ ]+_NN2_intance\s?
+2	stance adverb	likelihood	perhaps	[^_ ]+_RR_perhaps\s?
+2	stance adverb	likelihood	possibly	[^_ ]+_RR_possibly\s?
+2	stance adverb	likelihood	predictably	[^_ ]+_RR_predictably\s?
+2	stance adverb	likelihood	probably	[^_ ]+_RR_probably\s?
+2	stance adverb	likelihood	roughly	[^_ ]+_RR_roughly\s?
+2	stance adverb	likelihood	sort of	[^_ ]+_NN1_sort\sof_IO_of\s?
+2	stance adverb	likelihood	maybe	[^_ ]+_RR_maybe\s?
+2	stance adverb	attitude	amazingly	[^_ ]+_RR_amazingly\s?
+2	stance adverb	attitude	astonishingly	[^_ ]+_RR_astonishingly\s?
+2	stance adverb	attitude	conveniently	[^_ ]+_RR_conveniently\s?
+2	stance adverb	attitude	curiously	[^_ ]+_RR_curiously\s?
+2	stance adverb	attitude	hopefully	[^_ ]+_RR_hopefully\s?
+2	stance adverb	attitude	even worse	[^_ ]+_RR_even\sworse_JJR_bad\s?
+2	stance adverb	attitude	fortunately	[^_ ]+_RR_fortunately\s?
+2	stance adverb	attitude	importantly	[^_ ]+_RR_importantly\s?
+2	stance adverb	attitude	ironically	[^_ ]+_RR_ironically\s?
+2	stance adverb	attitude	rightly	[^_ ]+_RR_rightly\s?
+2	stance adverb	attitude	sadly	[^_ ]+_RR_sadly\s?
+2	stance adverb	attitude	surprisingly	[^_ ]+_RR_surprisingly\s?
+2	stance adverb	attitude	unfortunately	[^_ ]+_RR_unfortunately\s?
+2	stance adverb	style	according to	[^_ ]+_II21_according\sto_II22_to\s?
+2	stance adverb	style	confidentially	[^_ ]+_RR_confidentially\s?
+2	stance adverb	style	frankly	[^_ ]+_RR_frankly\s?
+2	stance adverb	style	generally	[^_ ]+_RR_generally\s?
+2	stance adverb	style	honsetly	[^_ ]+_RR_honestly\s?
+2	stance adverb	style	mainly	[^_ ]+_RR_mainly\s?
+2	stance adverb	style	technically	[^_ ]+_RR_technically\s?
+2	stance adverb	style	truthfully	[^_ ]+_RR_truthfully\s?
+2	stance adverb	style	typically	[^_ ]+_RR_typically\s?
+2	stance adverb	style	reportedly	[^_ ]+_RR_reportedly\s?
+2	stance adverb	style	primarily	[^_ ]+_RR_primarily\s?
+2	stance adverb	style	usually	[^_ ]+_RR_usually\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	conclude (that)	[^_ ]+_V[^_]{1,3}_conclude\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	demonstrate (that)	[^_ ]+_V[^_]{1,3}_demonstrate\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	determine (that)	[^_ ]+_V[^_]{1,3}_determine\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	discover (that)	[^_ ]+_V[^_]{1,3}_discover\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	find (that)	[^_ ]+_V[^_]{1,3}_find\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	know (that)	[^_ ]+_V[^_]{1,3}_know\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	learn (that)	[^_ ]+_V[^_]{1,3}_learn\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	mean (that)	[^_ ]+_V[^_]{1,3}_mean\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	notice (that)	[^_ ]+_V[^_]{1,3}_notice\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	observe (that)	[^_ ]+_V[^_]{1,3}_observe\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	prove (that)	[^_ ]+_V[^_]{1,3}_prove\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	realise (that)	[^_ ]+_V[^_]{1,3}_realise\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	recognise (that)	[^_ ]+_V[^_]{1,3}_recognise\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	remember (that)	[^_ ]+_V[^_]{1,3}_remember\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	see (that)	[^_ ]+_V[^_]{1,3}_see\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	show (that)	[^_ ]+_V[^_]{1,3}_show\s?
+3.1a	stance verb + (that) clause	epistemic verbs - certainty	undertand (that)	[^_ ]+_V[^_]{1,3}_understand\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	assume (that)	[^_ ]+_V[^_]{1,3}_assume\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	believe (that)	[^_ ]+_V[^_]{1,3}_believe\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	doubt (that)	[^_ ]+_V[^_]{1,3}_doubt\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	gather (that)	[^_ ]+_V[^_]{1,3}_gather\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	guess (that)	[^_ ]+_V[^_]{1,3}_guess\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	hypothesise (that)	[^_ ]+_V[^_]{1,3}_hypothesise\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	imagine (that)	[^_ ]+_V[^_]{1,3}_imagine\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	predict (that)	[^_ ]+_V[^_]{1,3}_predict\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	presuppose (that)	[^_ ]+_V[^_]{1,3}_presuppose\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	presume (that)	[^_ ]+_V[^_]{1,3}_presume\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	reckon (that)	[^_ ]+_V[^_]{1,3}_reckon\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	seem (that)	[^_ ]+_V[^_]{1,3}_seem\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	speculate (that)	[^_ ]+_V[^_]{1,3}_speculate\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	suppose (that)	[^_ ]+_V[^_]{1,3}_suppose\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	suspect (that)	[^_ ]+_V[^_]{1,3}_suspect\s?
+3.1a	stance verb + (that) clause	epistemic verbs - likelihood	think (that)	[^_ ]+_V[^_]{1,3}_think\s?
+3.1a	stance verb + (that) clause	Attitude verbs	agree (that)	[^_ ]+_V[^_]{1,3}_agree\s?
+3.1a	stance verb + (that) clause	Attitude verbs	aniticipate	[^_ ]+_V[^_]{1,3}_anticipate\s?
+3.1a	stance verb + (that) clause	Attitude verbs	complain (that)	[^_ ]+_V[^_]{1,3}_complain\s?
+3.1a	stance verb + (that) clause	Attitude verbs	concede (that)	[^_ ]+_V[^_]{1,3}_concede\s?
+3.1a	stance verb + (that) clause	Attitude verbs	ensure (that)	[^_ ]+_V[^_]{1,3}_ensure\s?
+3.1a	stance verb + (that) clause	Attitude verbs	expect (that)	[^_ ]+_V[^_]{1,3}_expect\s?
+3.1a	stance verb + (that) clause	Attitude verbs	fear (that)	[^_ ]+_V[^_]{1,3}_fear\s?
+3.1a	stance verb + (that) clause	Attitude verbs	feel (that)	[^_ ]+_V[^_]{1,3}_feel\s?
+3.1a	stance verb + (that) clause	Attitude verbs	forget (that)	[^_ ]+_V[^_]{1,3}_forget\s?
+3.1a	stance verb + (that) clause	Attitude verbs	hope (that)	[^_ ]+_V[^_]{1,3}_hope\s?
+3.1a	stance verb + (that) clause	Attitude verbs	mind (that)	[^_ ]+_V[^_]{1,3}_mind\s?
+3.1a	stance verb + (that) clause	Attitude verbs	prefer (that)	[^_ ]+_V[^_]{1,3}_prefer\s?
+3.1a	stance verb + (that) clause	Attitude verbs	pretend (that)	[^_ ]+_V[^_]{1,3}_pretend\s?
+3.1a	stance verb + (that) clause	Attitude verbs	require (that)	[^_ ]+_V[^_]{1,3}_require\s?
+3.1a	stance verb + (that) clause	Attitude verbs	wish (that)	[^_ ]+_V[^_]{1,3}_wish\s?
+3.1a	stance verb + (that) clause	Attitude verbs	worry (that)	[^_ ]+_V[^_]{1,3}_worry\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	announce (that)	[^_ ]+_V[^_]{1,3}_announce\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	argue (that)	[^_ ]+_V[^_]{1,3}_argue\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	assert (that)	[^_ ]+_V[^_]{1,3}_assert\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	claim (that)	[^_ ]+_V[^_]{1,3}_claim\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	contend (that)	[^_ ]+_V[^_]{1,3}_contend\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	declare (that)	[^_ ]+_V[^_]{1,3}_declare\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	emphasise (that)	[^_ ]+_V[^_]{1,3}_emphasise\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	explain (that)	[^_ ]+_V[^_]{1,3}_explain\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	imply (that)	[^_ ]+_V[^_]{1,3}_imply\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	insist (that)	[^_ ]+_V[^_]{1,3}_insist\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	mention (that)	[^_ ]+_V[^_]{1,3}_mention\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	promise (that)	[^_ ]+_V[^_]{1,3}_promise\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	propose (that)	[^_ ]+_V[^_]{1,3}_propose\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	recommend (that)	[^_ ]+_V[^_]{1,3}_recommend\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	remark (that)	[^_ ]+_V[^_]{1,3}_remark\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	respond (that)	[^_ ]+_V[^_]{1,3}_respond\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	say (that)	[^_ ]+_V[^_]{1,3}_say\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	state (that)	[^_ ]+_V[^_]{1,3}_state\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	suggest (that)	[^_ ]+_V[^_]{1,3}_suggest\s?
+3.1a	stance verb + (that) clause	Speech act and other communication verbs	tell (that)	[^_ ]+_V[^_]{1,3}_tell\s?
+3.1b	stance verb + to-clause	probability (likelihood) verbs	appear to	[^_ ]+_V[^_]{1,3}_appear\sto_TO_to\s?
+3.1b	stance verb + to-clause	probability (likelihood) verbs	happen to	[^_ ]+_V[^_]{1,3}_happen\sto_TO_to\s?
+3.1b	stance verb + to-clause	probability (likelihood) verbs	seem to	[^_ ]+_V[^_]{1,3}_seem\sto_TO_to\s?
+3.1b	stance verb + to-clause	probability (likelihood) verbs	tend to	[^_ ]+_V[^_]{1,3}_tend\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	assume to	[^_ ]+_V[^_]{1,3}_assume\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	believe to	[^_ ]+_V[^_]{1,3}_believe\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	consider to	[^_ ]+_V[^_]{1,3}_consider\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	epect to	[^_ ]+_V[^_]{1,3}_expect\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	find to	[^_ ]+_V[^_]{1,3}_find\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	forget to	[^_ ]+_V[^_]{1,3}_forget\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	imagine to	[^_ ]+_V[^_]{1,3}_imagine\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	judge to	[^_ ]+_V[^_]{1,3}_judge\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	know to	[^_ ]+_V[^_]{1,3}_know\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	learn to	[^_ ]+_V[^_]{1,3}_learn\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	presume to	[^_ ]+_V[^_]{1,3}_presume\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	pretend to	[^_ ]+_V[^_]{1,3}_pretend\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	remember to	[^_ ]+_V[^_]{1,3}_remember\sto_TO_to\s?
+3.1b	stance verb + to-clause	cognition/perception verbs (likelihood)	suppose to	[^_ ]+_V[^_]{1,3}_suppose\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	agree to	[^_ ]+_V[^_]{1,3}_agree\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	choose to	[^_ ]+_V[^_]{1,3}_choose\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	decide to	[^_ ]+_V[^_]{1,3}_decide\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	hate to	[^_ ]+_V[^_]{1,3}_hate\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	hesitate to	[^_ ]+_V[^_]{1,3}_hesitate\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	hope to	[^_ ]+_V[^_]{1,3}_hope\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	intend to	[^_ ]+_V[^_]{1,3}_intend\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	like to	[^_ ]+_V[^_]{1,3}_like\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	love to	[^_ ]+_V[^_]{1,3}_love\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	mean to	[^_ ]+_V[^_]{1,3}_mean\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	need to	[^_ ]+_V[^_]{1,3}_need\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	plan to	[^_ ]+_V[^_]{1,3}_plan\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	prefer to	[^_ ]+_V[^_]{1,3}_prefer\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	prepare to	[^_ ]+_V[^_]{1,3}_prepare\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	refuse to	[^_ ]+_V[^_]{1,3}_refuse\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	want to	[^_ ]+_V[^_]{1,3}_want\sto_TO_to\s?
+3.1b	stance verb + to-clause	desire/intention/decision verbs	wish to	[^_ ]+_V[^_]{1,3}_wish\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	allow to	[^_ ]+_V[^_]{1,3}_allow\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	attempt to	[^_ ]+_V[^_]{1,3}_attempt\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	enable to	[^_ ]+_V[^_]{1,3}_enable\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	encourage to	[^_ ]+_V[^_]{1,3}_encourage\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	fail to	[^_ ]+_V[^_]{1,3}_fail\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	help to	[^_ ]+_V[^_]{1,3}_help\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	instruct to	[^_ ]+_V[^_]{1,3}_instruct\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	manage to	[^_ ]+_V[^_]{1,3}_manage\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	oblige to	[^_ ]+_V[^_]{1,3}_oblige\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	order to	[^_ ]+_V[^_]{1,3}_order\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	permit to	[^_ ]+_V[^_]{1,3}_permit\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	persuade to	[^_ ]+_V[^_]{1,3}_persuade\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	prompt to	[^_ ]+_V[^_]{1,3}_prompt\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	require to	[^_ ]+_V[^_]{1,3}_require\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	seek to	[^_ ]+_V[^_]{1,3}_seek\sto_TO_to\s?
+3.1b	stance verb + to-clause	verbs of causation/modality/effort	try to	[^_ ]+_V[^_]{1,3}_try\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	ask to	[^_ ]+_V[^_]{1,3}_ask\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	claim to	[^_ ]+_V[^_]{1,3}_claim\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	invite to	[^_ ]+_V[^_]{1,3}_invite\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	promise to	[^_ ]+_V[^_]{1,3}_promise\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	remind to	[^_ ]+_V[^_]{1,3}_remind\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	request to	[^_ ]+_V[^_]{1,3}_request\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	be said to	[^_ ]+_VB[^_]{1,2}_be\ssaid_VVN_say\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	show to	[^_ ]+_V[^_]{1,3}_show\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	teach to	[^_ ]+_V[^_]{1,3}_teach\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	tell to	[^_ ]+_V[^_]{1,3}_tell\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	urge to	[^_ ]+_V[^_]{1,3}_urge\sto_TO_to\s?
+3.1b	stance verb + to-clause	speech act and other communication verbs	warn to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	apparent (that)	[^_ ]+_JJ[^_]?_apparent\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	certain (that)	[^_ ]+_JJ[^_]?_certain\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	clear (that)	[^_ ]+_JJ[^_]?_clear\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	confident (that)	[^_ ]+_JJ[^_]?_confident\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	convinced (that)	[^_ ]+_JJ[^_]?_convinced\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	correct (that)	[^_ ]+_JJ[^_]?_correct\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	evident (that)	[^_ ]+_JJ[^_]?_evident\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	false (that)	[^_ ]+_JJ[^_]?_false\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	impossible (that)	[^_ ]+_JJ[^_]?_impossible\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	inevitable (that)	[^_ ]+_JJ[^_]?_inevitable\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	obvious (that)	[^_ ]+_JJ[^_]?_obvious\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	positive (that)	[^_ ]+_JJ[^_]?_positive\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	right (that)	[^_ ]+_JJ[^_]?_right\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	sure (that)	[^_ ]+_JJ[^_]?_sure\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	true (that)	[^_ ]+_JJ[^_]?_true\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - certainty (that)	well-known (that)	[^_ ]+_JJ[^_]?_well-known\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - likelihood (that)	doubtful (that)	[^_ ]+_JJ[^_]?_doubtful\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - likelihood (that)	likely (that)	[^_ ]+_JJ[^_]?_likely\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - likelihood (that)	possible (that)	[^_ ]+_JJ[^_]?_possible\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - likelihood (that)	probable (that)	[^_ ]+_JJ[^_]?_probable\s?
+3.2a	stance adjective + (that) clause	epistemic adjectives - likelihood (that)	unlikely (that)	[^_ ]+_JJ[^_]?_unlikely\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	afraid (that)	[^_ ]+_JJ[^_]?_afraid\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	amazed (that)	[^_ ]+_JJ[^_]?_amazed\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	aware (that)	[^_ ]+_JJ[^_]?_aware\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	concerned (that)	[^_ ]+_JJ[^_]?_concerned\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	disappointed (that)	[^_ ]+_JJ[^_]?_disappointed\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	encouraged (that)	[^_ ]+_JJ[^_]?_encouraged\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	glad (that)	[^_ ]+_JJ[^_]?_glad\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	happy (that)	[^_ ]+_JJ[^_]?_happy\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	hopeful (that)	[^_ ]+_JJ[^_]?_hopeful\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	pleased (that)	[^_ ]+_JJ[^_]?_pleased\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	shocked (that)	[^_ ]+_JJ[^_]?_shocked\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	surprised (that)	[^_ ]+_JJ[^_]?_surprised\s?
+3.2a	stance adjective + (that) clause	attitude/emotion adjectives (that)	worried (that)	[^_ ]+_JJ[^_]?_worried\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	amazing (that)	[^_ ]+_JJ[^_]?_amazing\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	appropriate (that)	[^_ ]+_JJ[^_]?_appropriate\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	conceivable (that)	[^_ ]+_JJ[^_]?_conceivable\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	crucial (that)	[^_ ]+_JJ[^_]?_crucial\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	essential (that)	[^_ ]+_JJ[^_]?_essential\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	fortunate (that)	[^_ ]+_JJ[^_]?_fortunate\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	imperative (that)	[^_ ]+_JJ[^_]?_imperative\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	inconceivable (that)	[^_ ]+_JJ[^_]?_inconceivable\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	incredible (that)	[^_ ]+_JJ[^_]?_incredible\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	interesting (that)	[^_ ]+_JJ[^_]?_interesting\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	lucky (that)	[^_ ]+_JJ[^_]?_lucky\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	necessary (that)	[^_ ]+_JJ[^_]?_necessary\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	nice (that)	[^_ ]+_JJ[^_]?_nice\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	noteowrthy (that)	[^_ ]+_JJ[^_]?_noteworthy\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	odd (that)	[^_ ]+_JJ[^_]?_odd\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	ridiculous (that)	[^_ ]+_JJ[^_]?_ridiculous\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	strange (that)	[^_ ]+_JJ[^_]?_strange\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	surprising (that)	[^_ ]+_JJ[^_]?_surprising\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	unacceptable (that)	[^_ ]+_JJ[^_]?_unacceptable\s?
+3.2a	stance adjective + (that) clause	evaluation adjectives (that)	unfortunate (that)	[^_ ]+_JJ[^_]?_unfortunate\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	apt to	[^_ ]+_JJ[^_]?_apt\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	certain to	[^_ ]+_JJ[^_]?_certain\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	due to	[^_ ]+_JJ[^_]?_due\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	guaranteed to	[^_ ]+_VVN_guarantee\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	liable to	[^_ ]+_JJ[^_]?_liable\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	likely to	[^_ ]+_JJ[^_]?_likely\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	prone to	[^_ ]+_JJ[^_]?_prone\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	unlikely to	[^_ ]+_JJ[^_]?_unlikely\sto_TO_to\s?
+3.2b	stance adjective + to-clause	epistemic (certainty/likelihood) adjectives	sure to	[^_ ]+_JJ[^_]?_sure\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	afraid to	[^_ ]+_JJ[^_]?_afraid\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	ashamed to	[^_ ]+_JJ[^_]?_ashamed\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	disappointed to	[^_ ]+_JJ[^_]?_disappointed\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	embarrased to	[^_ ]+_JJ[^_]?_embarrassed\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	glad to	[^_ ]+_JJ[^_]?_glad\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	happy to	[^_ ]+_JJ[^_]?_happy\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	pleased to	[^_ ]+_JJ[^_]?_pleased\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	proud to	[^_ ]+_JJ[^_]?_proud\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	puzzled to	[^_ ]+_JJ[^_]?_puzzled\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	relieved to	[^_ ]+_VVN_relieve\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	sorry to	[^_ ]+_JJ[^_]?_sorry\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	surprised to	[^_ ]+_JJ[^_]?_surprised\sto_TO_to\s?
+3.2b	stance adjective + to-clause	attitude/emotion adjectives + to	worried to	[^_ ]+_JJ[^_]?_worried\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	ppropriate to	[^_ ]+_JJ[^_]?_appropriate\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	inappropriate to	[^_ ]+_JJ[^_]?_inappropriate\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	bad to	[^_ ]+_JJ_bad\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	worse to	[^_ ]+_JJR_bad\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	good to	[^_ ]+_JJ_good\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	better to	[^_ ]+_JJR_good\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	best to	[^_ ]+_JJT_good\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	convenient to	[^_ ]+_JJ[^_]?_convenient\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	essential to	[^_ ]+_JJ[^_]?_essential\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	important to	[^_ ]+_JJ[^_]?_important\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	interesting to	[^_ ]+_JJ[^_]?_interesting\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	neceesary to	[^_ ]+_JJ[^_]?_necessary\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	nice to	[^_ ]+_JJ[^_]?_nice\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	reasonable to	[^_ ]+_JJ[^_]?_reasonable\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	silly to	[^_ ]+_JJ[^_]?_silly\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	smart to	[^_ ]+_JJ[^_]?_smart\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	stupid to	[^_ ]+_JJ[^_]?_stupid\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	surprising to	[^_ ]+_JJ[^_]?_surprising\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	useful to	[^_ ]+_JJ[^_]?_useful\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	useless to	[^_ ]+_JJ[^_]?_useless\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	unreasonable to	[^_ ]+_JJ[^_]?_unreasonable\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	wise to	[^_ ]+_JJ[^_]?_wise\sto_TO_to\s?
+3.2b	stance adjective + to-clause	evaluation adjectives + to	wrong to	[^_ ]+_JJ[^_]?_wrong\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	able to	[^_ ]+_JK_able\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	unable to	[^_ ]+_JK_unable\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	anxious to	[^_ ]+_JJ_anxious\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	careful to	[^_ ]+_JJ[^_]?_careful\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	determined to	[^_ ]+_JJ[^_]?_determined\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	eager to	[^_ ]+_JJ[^_]?_eager\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	eligible to	[^_ ]+_JJ[^_]?_eligible\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	hesitant to	[^_ ]+_JJ[^_]?_hesitant\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	inclined to	[^_ ]+_JJ[^_]?_inclined\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	obliged to	[^_ ]+_VVN_oblige\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	prepared to	[^_ ]+_JJ[^_]?_prepared\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	ready to	[^_ ]+_JJ[^_]?_ready\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	reluctant to	[^_ ]+_JJ[^_]?_reluctant\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	willing to	[^_ ]+_JJ[^_]?_willing\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ability or willingness adjectives + to	unwilling to	[^_ ]+_JJ[^_]?_unwilling\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	difficult to	[^_ ]+_JJ[^_]?_difficult\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	easier to	[^_ ]+_JJR_easy\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	easy to	[^_ ]+_JJ[^_]?_easy\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	hard to	[^_ ]+_JJ[^_]?_hard\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	possible to	[^_ ]+_JJ[^_]?_possible\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	impossible to	[^_ ]+_JJ[^_]?_impossible\sto_TO_to\s?
+3.2b	stance adjective + to-clause	ease or difficulty adjectives + to	tough to	[^_ ]+_JJ[^_]?_tough\sto_TO_to\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	assertion (that)	[^_ ]+_N[^_]{1,3}_assertion\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	conclusion (that)	[^_ ]+_N[^_]{1,3}_conclusion\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	conviction (that)	[^_ ]+_N[^_]{1,3}_conviction\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	discovery (that)	[^_ ]+_N[^_]{1,3}_discovery\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	doubt (that)	[^_ ]+_N[^_]{1,3}_doubt\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	fact (that)	[^_ ]+_N[^_]{1,3}_fact\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	knowledge (that)	[^_ ]+_N[^_]{1,3}_knowledge\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	observation (that)	[^_ ]+_N[^_]{1,3}_observation\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	principle (that)	[^_ ]+_N[^_]{1,3}_principle\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	realization (that)	[^_ ]+_N[^_]{1,3}_realization\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	result (that)	[^_ ]+_N[^_]{1,3}_result\s?
+3.3a	stance noun + (that) clause	epistemic nouns - certainty (that)	statemment (that)	[^_ ]+_N[^_]{1,3}_statement\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	assumption (that)	[^_ ]+_N[^_]{1,3}_assumption\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	belief (that)	[^_ ]+_N[^_]{1,3}_belief\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	claim (that)	[^_ ]+_N[^_]{1,3}_claim\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	contention tht	[^_ ]+_N[^_]{1,3}_contention\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	feeling (that)	[^_ ]+_N[^_]{1,3}_feeling\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	hypothesis (that)	[^_ ]+_N[^_]{1,3}_hypothesis\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	idea (that)	[^_ ]+_N[^_]{1,3}_idea\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	implication (that)	[^_ ]+_N[^_]{1,3}_implication\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	impression (that)	[^_ ]+_N[^_]{1,3}_impression\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	notion (that)	[^_ ]+_N[^_]{1,3}_notion\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	opinion (that)	[^_ ]+_N[^_]{1,3}_opinion\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	possibility (that)	[^_ ]+_N[^_]{1,3}_possibility\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	presumption (that)	[^_ ]+_N[^_]{1,3}_presumption\s?
+3.3a	stance noun + (that) clause	epistemic nouns - likelihood (that)	suggestion (that)	[^_ ]+_N[^_]{1,3}_suggestion\s?
+3.3a	stance noun + (that) clause	attitude/perspective nouns (that)	grounds (that)	[^_ ]+_N[^_]{1,3}_ground\s?
+3.3a	stance noun + (that) clause	attitude/perspective nouns (that)	hope (that)	[^_ ]+_N[^_]{1,3}_hope\s?
+3.3a	stance noun + (that) clause	attitude/perspective nouns (that)	reason (that)	[^_ ]+_N[^_]{1,3}_reason\s?
+3.3a	stance noun + (that) clause	attitude/perspective nouns (that)	view (that)	[^_ ]+_N[^_]{1,3}_view\s?
+3.3a	stance noun + (that) clause	attitude/perspective nouns (that)	thought (that)	[^_ ]+_N[^_]{1,3}_thought\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	comment (that)	[^_ ]+_N[^_]{1,3}_comment\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	news (that)	[^_ ]+_N[^_]{1,3}_news\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	proposal (that)	[^_ ]+_N[^_]{1,3}_proposal\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	proposition (that)	[^_ ]+_N[^_]{1,3}_proposition\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	remark (that)	[^_ ]+_N[^_]{1,3}_remark\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	report (that)	[^_ ]+_N[^_]{1,3}_report\s?
+3.3a	stance noun + (that) clause	communication (non-factual) nouns (that)	requirement (that)	[^_ ]+_N[^_]{1,3}_requirement\s?
+3.3b	stance noun + to-clause	stance noun + to	agreement to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	decision to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	desire to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	failure to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	inclination to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	intention to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	obligation to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	opportunity to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	plan to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	promise to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	proposal to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	reluctance to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	responsibility to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	right to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	tendency to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	threat to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	wish to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?
+3.3b	stance noun + to-clause	stance noun + to	willingness to	[^_ ]+_V[^_]{1,3}_warn\sto_TO_to\s?

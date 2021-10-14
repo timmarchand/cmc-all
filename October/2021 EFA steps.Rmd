@@ -1,0 +1,263 @@
+---
+title: "2021 EFA steps"
+author: "Tim Marchand"
+date: "5/13/2021"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pacman)
+```
+
+## Introduction
+
+This document describes the step by step process of conducting
+exploratory factor analysis from POSgrams of the BNC and CMC corpora.
+
+The steps are as follows:
+
+1.  Preliminaries
+
+    1.  Load libraries
+
+    2.  Load data set
+
+    3.  Create functions
+
+2.  Exploratory factor analysis
+
+    1.  Preliminary steps
+
+    2.  Step 1
+
+    3.  Step 2
+
+    4.  Step 3
+
+    5.  Summary
+
+3.  Internal consistency reliability
+
+4.  Results presentation
+
+## Preliminaries
+
+### Load libraries
+
+```{r}
+p_load(tidyverse, psych, tidylog)
+```
+
+### Load data
+
+We load the data from the outputs of the udpipe and wmatrix codes for
+comaprison.
+
+```{r}
+##import the file from POS project
+dat <- read_csv(here::here("efa","data","efa_table.csv"))
+
+## create matrix for efa
+master <- dat %>%  
+  column_to_rownames(var = "file") %>% 
+  keep(is.numeric)
+```
+
+A quick look at the data:
+
+```{r}
+head(dat) 
+dim(master)
+```
+
+### Create functions
+
+The following functions will be useful when looking at the EFA output
+from the "pysch" package.
+
+```{r}
+`%notin%` <- Negate(`%in%`) # always useful
+
+
+# specify the cut point and get the loadings in a tidy format
+get_loadings <- function(x, cut = 0) {
+  #get sorted loadings
+  loadings <- fa.sort(x)$loadings %>% round(3)
+  #supress loadings
+  loadings[loadings < abs(cut)] <- ""
+  #get additional info
+  add_info <- cbind(x$communalities, 
+                    x$uniquenesses,
+                    x$complexity) %>%
+    # make it a data frame
+    as.data.frame() %>%
+    # column names
+    rename("Communality" = V1,
+           "Uniqueness" = V2,
+           "Complexity" = V3) %>%
+    #get the item names from the vector
+    rownames_to_column("POSgram")
+  #build table
+  loadings %>%
+    unclass() %>%
+    as.data.frame() %>%
+    rownames_to_column("POSgram") %>%
+    left_join(add_info) %>%
+    mutate(across(where(is.numeric), round, 3))
+}
+
+## get the factor correlations table
+get_fa_cors <- function(x){
+  x %>% pluck("Phi")
+}
+
+## get various fit statistics
+get_BIC <- function(x){
+  x %>% pluck("BIC")
+}
+
+get_RMSEA <- function(x){
+  x %>% pluck("RMSEA")
+}
+
+get_TLI<- function(x){
+  x %>% pluck("TLI")
+}
+
+get_cfi <- function(x){
+  stat <- x %>% pluck("STATISTIC")
+  dof <- x %>% pluck("dof")
+  null.chisq <- x %>% pluck("null.chisq")
+  null.dof <- x %>% pluck("null.dof")
+  
+  cfi <- (stat-dof)/(null.chisq - null.dof)
+  return(cfi)
+}
+```
+
+## Exploratory Factor Analysis
+
+### 1 Preliminary steps
+
+#### Descriptive statistics
+
+Check minimum/maximum values per item, and screen for missing values.
+
+#### Normality of data
+
+This is done to check for the normality of the data. If the data are normally distributed, we may use maximum likelihood (ML) for the EFA, which will allow more detailed analysis. Otherwise, the extraction method of choice is principal axis factoring (PAF), because it does not require normally distributed data (Brown, 2015).
+
+```{r}
+sample_cols <- sample(names(master),16, replace = FALSE)
+data_long <- 
+master %>% select(all_of(sample_cols)) %>% 
+pivot_longer(cols = everything(),names_to = 'key')
+
+ggplot(data_long, aes(sample = value)) +
+stat_qq() +
+facet_wrap(~key)
+```
+
+Univariate normality 1. Histograms
+
+```{r}
+##assumption set up
+random = rchisq(nrow(master), 7)
+fake = lm(random~., data = master)
+standardized = rstudent(fake)
+fitted = scale(fake$fitted.values)
+
+##normality
+hist(standardized)
+
+##linearity
+qqnorm(standardized)
+abline(0,1)
+
+##homogeneity
+plot(fitted,standardized)
+abline(0,0)
+abline(v = 0)
+```
+
+```{r}
+## test normality of multivariates
+mvn <- MVN::mvn(master, mvnTest = "mardia")
+mvn
+```
+
+2.  Shapiro Wilk's test
+
+
+
+Multivariate normality To say the data are multivariate normal: •
+z-kurtosis \< 5 (Bentler, 2006) and the P-value should be ≥ 0.05. • The
+plot should also form a straight line (Arifin, 2015). Run Mardia's
+multivariate normality test,
+
+Check suitability of data for analysis 1. Kaiser-Meyer-Olkin (KMO)
+```{r}
+correl = cor(master, use = "pairwise.complete.obs")
+KMO(correl)
+```
+
+Measure of Sampling Adequacy (MSA) MSA is a relative measure of the
+amount of correlation (Kaiser, 1970). It indicates whether it is
+worthwhile to analyze a correlation matrix or not. KMO is an overall
+measure of MSA for a set of items. The following 
+is the guideline in interpreting KMO values (Kaiser & Rice, 1974)
+
+2.  Bartlet's test of sphericity Basically it tests whether the correlation matrix is an identity matrix (Bartlett, 1951; Gorsuch, 2014). 
+A significant test indicates worthwhile correlations between the items (i.e. off-diagonal values are not 0). Test our data:
+```{r}
+cortest.bartlett(correl, n = nrow(master))
+```
+```{r}
+##how many factors?
+nofactors = fa.parallel(master, fm="pa", fa="fa")
+sum(nofactors$fa.values > 1.0) ##old kaiser criterion
+sum(nofactors$fa.values > .7) ##new kaiser criterion
+```
+
+Iterate 
+```{r}
+tbl <-  nest(master,data = everything()) %>% 
+  # duplicate data for maximum number of factors 
+  slice(rep(1, each=7)) %>% 
+  # add factors column
+  rowid_to_column(var = "nfactors") %>% 
+  # create list column with fa results for each factor
+  mutate(model = map2(.x = .$nfactors, .y = .$data, 
+                      .f = ~fa(.y, nfactors = .x, 
+ for (i in 1:nrow(cmc_tags)) {
+
+  
+     # read in each file as a text
+     text <- cmc_tags$tagged_thread[i]
+     # create text_id variable from file name
+     text_id <- cmc_tags$id[i]
+     # create corpus name by grabbing the first 3 letters of text_id
+     corpus <- cmc_tags$corpus[i]
+#      # print progress status
+    cat(paste0("\n","matching searches in ", text_id,"\t", round(i*100/nrow(cmc_tags),2),"% completed","\n"))
+                                   rotate = "oblimin", fm = "pa"))) %>% 
+  # add BIC information for each model
+  mutate(BIC = map_dbl(.x = model, .f = ~get_BIC(.x))) %>% 
+  # add loadings table
+  mutate(loadings = map(.x = model, .f = ~get_loadings(.x, cut = 0))) %>% 
+  # add factor correlations table
+  mutate(fa_corrs = map(.x = model, .f = ~get_fa_cors(.x))) %>% 
+  # get cfi scores
+  mutate(cfi = map_dbl(.x = model, .f = ~get_cfi(.x))) #%>% 
+  mutate(RMSEA = map_dbl(.x = model, .f = ~pluck(1,"RMSEA")))
+```
+
+
+```{r}
+tbl %<>% mutate(results = map(model, ~get_loadings(.x)))
+```
+%>% 
